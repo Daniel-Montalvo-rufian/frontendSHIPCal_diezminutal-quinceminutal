@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %} Resumen de resultados de simulación {% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="container-fluid">
+	<div class="row">
+			<div class="col-md-6">
+				<h2> {% trans "Results" %}: </h2> <h4>{% trans "Simulation" %} # {{s.simulation.id}} - {{s.simulation.industry}}</h4>
+			</div>
+			<div align="right" class="col-md-6">
+				<a class="btn btn-success" href="{% url 'simulate' %}"> {% trans "Go to simulate" %}</a>
+			</div>
+	</div>
+</div>
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        {% url 'results' s.simulation.id as r %}
+        <a class="nav-link{% if request.path == r %} active{% endif %}" href="{{r}}">{% trans "Summary" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_instalation' s.simulation.id as ri%}
+        <a class="nav-link{% if request.path == ri %} active{% endif %}" href="{{ri}}">{% trans "Solar instalation" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_production' s.simulation.id as rp%}
+        <a class="nav-link{% if request.path == rp %} active{% endif %}" href="{{rp}}">{% trans "Solar production" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_financial' s.simulation.id as rf %}
+        <a class="nav-link{% if request.path == rf %} active{% endif %}" href="{{rf}}">{% trans "Financial summary" %}</a>
+    </li>
+</ul>
+
+<div class="container-fluid">
+
+<h3>{% trans "Selected array" %}</h3>
+<hr>
+
+{% blocktrans with To=s.plotVars.T_out_C|floatformat Ti=s.plotVars.T_in_C|floatformat trimmed %}
+<p> The solar instalation is formed by a certain number of collectors grouped by loops.
+The collectors within the loops are connected in series. The series connect paralel. 
+THe number of collector per loop is designed to to achieve the increase in temperature from <b>{{ Ti }} °C</b> into <b>{{ To }} °C</b>. 
+The number of loops depends on the total energy demand of the industry.</p>
+{% endblocktrans %}
+
+	<div class="row">
+		<div class="col-md-4">
+			<b>{% trans "Collectors per loop" %}:</b> {{ s.reportsVar.n_coll_loop }}
+		</div>
+		<div class="col-md-4">
+			<b>{% trans "Number of loops" %}:</b> {{ s.reportsVar.num_loops }}
+		</div>
+		<div class="col-md-4">
+			<b>{% trans "Collector" %}:</b> Default
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<b> {% trans "Used area" %}:</b> {{ s.reportsVar.Area_total|floatformat }} m<sup>2</sup>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+
+<h3>{% trans "Integration schema" %}</h3>
+<hr>
+
+<b> {% trans "Selected schema" %}:</b> {{ s.reportsVar.type_integration }} <br><br>
+
+	<div class="row">
+		<div class="col-md-6">
+			<b> {% trans "Mean flux" %}:</b> {{ s.reportsVar.flowrate_kgs_average|floatformat:3 }} kg/s
+		</div>
+
+<!-- Starts the integration dependent description -->
+
+{% if s.sim_inputs.type_integration == "SL_L_S" %}
+		<div class="col-md-6">
+			<b> {% trans "Storage volume" %}:</b> {{ s.simulation.almVolumen }} {% trans "liters" %}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<b> {% trans "Storage capacity" %}:</b> {{ s.reportsVar.energStorageMax|floatformat }} kWh
+		</div>
+	</div>
+
+<br>
+
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<img class="img-responsive" src="{% static "/integrations_images/SL_L_S.png" %}" alt="SL_L_S image"><br>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<p><b>Descripción:</b><br> 
+			Se ha simulado únicamente un almacenamiento de {{ s.sim_inputs.almVolumen }} L que con ayuda del campo solar mantendrá una temperatura constante de {{ s.sim_results.T_out_C|floatformat }}. 
+			La conexión del sistema solar se realiza en paralelo a la caldera. </p>
+		</div>
+	</div>
+	
+{% elif s.sim_inputs.type_integration == "SL_L_P" %}
+
+	</div>
+	
+<br>
+
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<img class="img-responsive" src="{% static "/integrations_images/SL_L_P.png" %}" alt="SL_L_P image"><br>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<p> <b>Descripción:</b><br> 
+			El campo solar se conecta en paralelo con la caldera. Los {{ s.sim_inputs.n_coll_loop }} colectores en cada serie elevan la temperatura del fluido a la misma temperatura que lo hace la caldera,
+			por lo que la conexión se realiza directamente al proceso. Esta integración no cuenta con almacenamiento por lo que la energía excedente se perderá. <br>
+			
+			El sistema puede entrar en recirculación por algunas horas para conseguir que los colectores tengan la misma temperatura de salida que la caldera. Puede que esta energía también se pierda
+			si no se consigue la temperatura de salida deseada antes de que las horas con radiación solar terminen.	
+			</p>
+		</div>
+	</div>
+	
+{% elif s.sim_inputs.type_integration == "SL_L_PS" %}
+
+		<div class="col-md-6">
+			<b> Volumen de almacenamiento:</b> {{ s.sim_inputs.almVolumen }} litros
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<b> Capacidad de almacenamiento:</b> {{ s.sim_results.energStorageMax|floatformat }} kWh
+		</div>
+	</div>
+
+<br>
+
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<img class="img-responsive" src="{% static "/integrations_images/SL_L_PS.png" %}" alt="SL_L_PS image"><br>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<p><b>Descripción:</b><br> 
+			El campo solar se conecta en paralelo con la caldera. Los {{ s.sim_inputs.n_coll_loop }} colectores en cada serie elevan la temperatura del fluido a la misma temperatura que lo hace la caldera,
+			por lo que la conexión se realiza directamente al proceso. Esta integración cuenta con un almacenamiento de {{ s.sim_inputs.almVolumen }} L por lo que la energía excedente será almacenada en el 
+			termotangque para usarse más tarde.<br> 
+			
+			El sistema puede entrar en recirculación por algunas horas para conseguir que los colectores tengan la misma temperatura de salida que la caldera. Puede que esta energía también se pierda
+			si no se consigue la temperatura de salida deseada antes de que las horas con radiación solar terminen.
+			</p>
+		</div>
+	</div>
+	
+{% elif s.sim_inputs.type_integration == "SL_L_RF" %}
+
+	</div>
+
+<br>
+
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<img class="img-responsive" src="{% static "/integrations_images/SL_L_RF.png" %}" alt="SL_L_RF image"><br>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<p><b>Descripción:</b><br> 
+			El campo solar se conecta en serie con la caldera a través de un intercambiador de calor. En este tipo de arreglo se pueden utilizar dos tipos de fluido en el mismo 
+			proceso que se transferirán energía a través del intercambiador de calor. El arreglo de colectores deberá entregar una temperatura mínima (no necesariamente la de 
+			salida del proceso) para reducir la carga que tendrá la caldera. <br>
+			
+			Esta integración no cuenta con almacenamiento por lo que la energía excedente se perderá. Este sistema puede entrar en recirculación por algunas horas para conseguir 
+			que los colectores tengan la temperatura mínima para entregar a la caldera. Puede que esta energía también se pierda si no se consigue la temperatura de salida deseada 
+			antes de que las horas con radiación solar terminen.	
+
+			</p>
+		</div>
+	</div>
+	
+{% elif s.sim_inputs.type_integration == "SL_L_DRF" %}
+
+	</div>
+
+<br>
+
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<img class="img-responsive" src="{% static "/integrations_images/SL_L_DRF.png" %}" alt="SL_L_DRF image"><br>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<p><b>Descripción:</b><br> 
+			
+			El campo solar se conecta directamente en serie con la caldera a través de un intercambiador de calor. Este esquema funciona a un caudal fijo (igual al caudal de prueba del colector), 
+			y no exige al campo solar una temperatura de salida mínima. Se asume que cualquier cantidad energía faltante para conseguir la temperatura de salida será proporcionada por la caldera.<br>
+			
+			Esta integración no cuenta con almacenamiento por lo que si en alguna hora del día hay energía excedente esta se perderá. Con este tipo de integración sistema no puede entrar en recirculación; 
+			por lo que puede que haya horas en las que la demanda sea cubierta en su totalidad por el campo solar mientras que en otras horas el campo aporte nada.
+
+			</p>
+		</div>
+	</div>
+{% endif %}
+
+</div>
+
+{% endblock %}

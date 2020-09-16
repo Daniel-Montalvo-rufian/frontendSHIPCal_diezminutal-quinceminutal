@@ -1,0 +1,67 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> {% block encabezdo %}  {% trans "SHIPcal simulation" %} {% endblock %} </title>
+
+        <!-- Required meta tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static "/bootstrap/css/bootstrap.min.css"  %}">
+        <script src="{% static "/bootstrap/js/jquery-3.5.1.min.js"  %}"></script>
+        <script src="{% static "/bootstrap/js/popper.min.js" %}"></script>
+        <script src="{% static "/bootstrap/js/bootstrap.min.js"  %}"></script>
+    </head>
+
+    <header style="background: #fff;">
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand row" href="#"> <img src="{% static "logo.png" %}" alt="SHIPcal logo" height="75px"> </a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            {% url 'simulate' as linkto_simulate %}
+                            <a class="nav-link" href="{{linkto_simulate}}">{% trans "Simulate" %}{% if request.path == linkto_simulate %}<span class="sr-only">(current)</span>{% endif %}</a>
+                        </li>
+                        <li class="nav-item">
+                            {% url 'all_results' as linkto_results %}
+                            <a class="nav-link" href="{{linkto_results}}">{% trans "Results" %}{% if request.path == linkto_results %}<span class="sr-only">(current)</span>{% endif %}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% trans "Add" %}
+                            </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    {% url 'new_location' as linkto_new_location %}
+                                    <a class="dropdown-item" href="{{ linkto_new_location }}">{% trans "New location" %}{% if request.path == linkto_new_location %}<span class="sr-only">(current)</span>{% endif %}</a>
+                                    {% comment %} {% url 'new_collector' as linkto_new_collector %} {% endcomment %}
+                                    <!-- <a class="dropdown-item" href="{{ linkto_new_collector }}">{% trans "New collector" %}{% if request.path == linkto_new_collector %}<span class="sr-only">(current)</span>{% endif %}</a> -->
+                                    {% url 'new_fuel' as linkto_new_fuel %}
+                                    <a class="dropdown-item" href="{{ linkto_new_fuel }}">{% trans "New fuel" %}{% if request.path == linkto_new_fuel %}<span class="sr-only">(current)</span>{% endif %}</a>
+                                </div>
+                        </li>
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+    <body style="background-image: url({% static 'background.png' %}); background-position-x: center; background-size: cover;">
+        <div class="container" style="background-color: #ffffff; width: 85%; margin: 0 auto; padding: 20px; min-height: calc(100vh - 150px - 15px);">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+        <footer style="text-align: center; font-size: small; margin: 0; padding: 15px; background: #fff; width: 100%;">
+            {% trans "Wanna help?" %} <a target="_blank" href="https://github.com/mfrasquet/SHIPcal/pulls">{% trans "Send a pull request!" %}</a></br>{% trans "Supported by SOLATOM " %}
+        </footer>
+    </body>
+</html>

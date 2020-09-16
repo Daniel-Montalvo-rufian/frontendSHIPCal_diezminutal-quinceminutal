@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Summary of simulation results" %} {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+			<div class="col-md-6">
+				<h2> {% trans "Results" %}: </h2> <h4>{% trans "Simulation" %} # {{s.simulation.id}} - {{s.simulation.industry}}</h4>
+			</div>
+			<div align="right" class="col-md-6">
+				<a class="btn btn-success" href="{% url 'simulate' %}"> {% trans "Go to simulate" %}</a>
+			</div>
+	</div>
+</div>
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        {% url 'results' s.simulation.id as r %}
+        <a class="nav-link{% if request.path == r %} active{% endif %}" href="{{r}}">{% trans "Summary" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_instalation' s.simulation.id as ri%}
+        <a class="nav-link{% if request.path == ri %} active{% endif %}" href="{{ri}}">{% trans "Solar instalation" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_production' s.simulation.id as rp%}
+        <a class="nav-link{% if request.path == rp %} active{% endif %}" href="{{rp}}">{% trans "Solar production" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_financial' s.simulation.id as rf %}
+        <a class="nav-link{% if request.path == rf %} active{% endif %}" href="{{rf}}">{% trans "Financial summary" %}</a>
+    </li>
+</ul>
+
+<div class="container-fluid">
+
+<h3> {% trans "Production through a year" %}</h3>
+<hr>
+
+	<img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_prodMonths }}"><br>
+	
+	<hr>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<b> {% trans "Meteorologic file" %}:</b> {{ s.reportsVar.location }}<br>
+		</div>
+		
+		<div class="col-md-6">
+			<b> {% trans "Total solar energy at location" %}:</b> {{ s.reportsVar.DNI_anual_irradiation|floatformat }} kWh/{% trans "year" %}m<sup>2</sup><br>
+		</div>
+	</div>
+	
+	<br>
+
+	<div class="row">
+		<div class="col-md-6">
+			<b> {% trans "Raw production" %}:</b> {{ s.reportsVar.Production_max|floatformat }} kWh/{% trans "year" %}<br>
+			<b> {% trans "Supplied production" %}:</b> {{ s.reportsVar.Production_lim|floatformat }} kWh/{% trans "year" %}<br>
+			<b> {% trans "Production per module" %}:</b> {{ s.reportsVar.Energy_module_max|floatformat }} kWh/{% trans "year" %}<br>
+		</div>
+		
+		<div class="col-md-6">
+			<b> {% trans "Energy consumed by traditional boiler" %}:</b> {{ s.plotVars.Energy_Before_annual|floatformat }} kWh/{% trans "year" %}<br>
+			<b> {% trans "Energy required by the process (demand)" %}:</b> {{ s.reportsVar.Demand_anual|floatformat }} kWh/{% trans "year" %}<br>
+		</div>
+	</div>
+	
+	<br>
+	
+    {% if s.sim_inputs.type_integration == 'SL_L_PS' or type_integration == 'SL_L_S' %}
+    <h4> {% trans "Storage status" %}</h4>
+
+    <div class="row">
+        <div class="col-md-12">			
+            <b><span style="color:rgb(6, 117, 24)">"{% trans "Charged" %}"</span></b> - {% trans "Stored solar energy in one year" %}: {{ s.reportsVar.totalCharged|floatformat }} kWh <br>
+            <b><span style="color:rgb(241, 138, 3)">"{% trans "Discharged" %}"</span></b> - {% trans "Stored and supplied energy in one year" %}: {{ s.reportsVar.totalDischarged|floatformat }} kWh <br>
+            <b><span style="color:rgb(255, 3, 3)">"{% trans "Defocused" %}"</span></b> - {% trans "Solar energy that cannot be stored nor supplied in one year" %}: {{ s.reportsVar.totalDefocus|floatformat }} kWh <br>
+        </div>
+    </div>
+    <br>
+    {% endif %}
+	
+	<div class="row">
+		<div class="col-md-4">
+			<b> {% trans "Energy utilization" %}:</b> {{ s.reportsVar.Utilitation_ratio|floatformat }} %
+		</div>
+		
+		<div class="col-md-4">
+			<b> {% trans "Raw production vs demand" %}:</b> {{ s.reportsVar.solar_fraction_max|floatformat }} %<br>
+
+		</div>
+		<div class="col-md-4">
+			<b> {% trans "Supplied production vs demand" %}:</b> {{ s.reportsVar.solar_fraction_lim|floatformat }} %<br>
+		</div>
+	</div>
+	
+	<hr>
+	
+</div>
+
+<div class="container-fluid">
+
+    <h3> {% trans "Production through a year" %}</h3>
+    <hr>
+        <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_Sankey.0 }}"><br>
+</div>
+
+<div class="container-fluid">
+
+<h3> {% trans "Details of winter and summer production" %}</h3>
+<hr>
+	<div class="row">
+	
+		<div class="form-group col-md-6">
+			<img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_prodSummerPlot }}">
+		</div>
+	
+		<div class="form-group col-md-6">
+			<img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_prodWinterPlot }}">
+		</div>
+	</div>
+	
+</div>
+
+<div class="container-fluid">
+
+    <h3>{% trans "Thermal fluid temperatures during the process" %}</h3>
+    <hr>
+    {% blocktrans with To=s.plotVars.T_out_C|floatformat Ti=s.plotVars.T_in_C|floatformat trimmed %}
+    <p> The whole circuit is in liquid phase, there is no evaporation. At the solar inlet the fluid enters at {{ Ti }}ºC.
+    The solar field heats the fluid up to {{ To }}ºC, corresponding to the outlet temperature towards the boiler. </p>
+    {% endblocktrans %}
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_prop1 }}">
+        </div>
+    
+        <div class="form-group col-md-6">
+            <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_prop2 }}">
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

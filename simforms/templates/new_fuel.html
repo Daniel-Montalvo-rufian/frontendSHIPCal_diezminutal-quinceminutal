@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+{{form_f.errors}}
+{{form_fu.errors}}
+<form method="POST" action="" class="needs-validation" novalidate>
+{% csrf_token %}
+
+    <div class="form-row">
+        <div class="col">
+        {{form_f.fuel.label_tag}}
+        {{form_f.fuel}}
+        </div>
+    </div>
+    <br>
+    <div class="form-row">
+        <div class="col-md-5 my-auto">
+            {{form_fu.conversion_factor.label_tag}}
+            {{form_fu.conversion_factor}}
+        </div>
+        <div class="col-md-2 my-auto text-center">
+            <br>
+            {{form_fu.factor_name}}/kWh
+        </div>
+        <div class="col-md-5 my-auto">
+            <br>
+            <button type="button" class="btn btn-primary btn-block" onclick="agregar()">{% trans "Add" %}</button>
+        </div>
+
+        {{form_fu.units_js.as_hidden}}
+
+    </div>
+    <br>
+    <div class="form-row">
+        <div class="col-md-5">
+            {{form_f.co2factor}}
+        </div>
+        <div class="col-md-2 my-auto text-center">
+            {{form_f.co2factor.label_tag}}
+        </div>
+        <div class="col-md-5" id="id_co2units">
+            {{f2.co2units}}
+        </div>
+    </div>
+    <script>
+        var conv_factors={"kWh":1}
+        function agregar(){
+            let key = document.getElementById("{{form_fu.factor_name.id_for_label}}").value
+            let factor = parseFloat(document.getElementById("{{form_fu.conversion_factor.id_for_label}}").value)
+            if (!(isNaN(factor)) && typeof(key)=="string"){
+                
+                conv_factors[key] = factor
+
+                $.ajax({
+                    url: "{% url 'async_tab' %}",
+                    data: conv_factors,
+                    success: function (data) {
+                        $("#fuel_table_divs").html(data);
+                    }
+                });
+
+                $.ajax({
+                    url: "{% url 'async_co2units' %}",
+                    data: conv_factors,
+                    success: function (data) {
+                        $("#id_co2units").html(data);
+                    }
+                });
+            }
+            document.getElementById("{{form_fu.units_js.id_for_label}}").value = JSON.stringify(conv_factors)
+        }
+        function del(key){
+            delete conv_factors[key]
+            $.ajax({
+                url: "{% url 'async_tab' %}",
+                data: conv_factors,
+                success: function (data) {   // 'data' is the return of the 'async_prod' view function
+                    $("#fuel_table_divs").html(data);  // replace the contents of the products div
+                }
+            });
+
+            $.ajax({
+                url: "{% url 'async_co2units' %}",
+                data: conv_factors,
+                success: function (data) {
+                    $("#id_co2units").html(data);
+                }
+            });
+
+        }
+    </script>
+
+    <br>
+    <div class="table-responsive-md" id="fuel_table_divs">
+        <table class="table table-hover" id="fuel_table">
+            <thead>
+                <tr>
+                <th scope="col">{% trans "Conversion factor" %}</th>
+                <th scope="col">{% trans "Units" %}</th>
+                <th scope="col">{% trans "Delete" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>1</td>
+                <td>kWh/kWh</td>
+                <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+    <div class="row justify-content-center" >
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-success btn-block"> {% if object %}{% trans "Update" %}{% else %}{% trans "Create" %}{% endif %} </button> 
+        </div>
+    </div>
+</form>
+
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+{% endblock %}

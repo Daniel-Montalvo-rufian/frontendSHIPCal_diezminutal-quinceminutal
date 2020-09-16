@@ -1,0 +1,470 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+{{form.errors}}
+<form method="POST" action="">
+{% csrf_token %}
+    <fieldset>
+        <legend>{% trans "Simulation information" %}</legend>
+
+        <div class="form-row">
+            <div class="col-md">
+                {{form.industry.label_tag}}
+                {{form.industry}}
+            </div>
+            <div class="col-md">
+                {{form.sectorIndustry.label_tag}}
+                {{form.sectorIndustry}}
+            </div>
+        </div>
+
+        <div class="form-row">
+            {{form.process.label_tag}}
+            {{form.process}}
+        </div>
+
+        <div class="form-row">
+            <div class="col-md">
+                {{form.name.label_tag}}
+                {{form.name}}
+            </div>
+            <div class="col-md">
+                {{form.email.label_tag}}
+                {{form.email}}                
+            </div>
+        </div>
+
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>{% trans "Location information" %}</legend>
+        <div class="form-row">
+            <div class="col-md">
+                <label for="{{form.pais.id_for_label}}">{% trans "Country" %}:</label>
+                {{form.pais}}
+            </div>
+            <div class="col-md" id="id_locations">
+                <label for="{{form.location.id_for_label}}">{% trans "Location" %}:</label><br>
+                <span> {% trans "The TMY must be compatible with the step resolution mode selected" %}: </span>
+                {{form.location}}
+            </div>
+        </div>
+        <script>
+            $("#{{form.pais.id_for_label}}").change(function () {
+            var url = "{% url 'async_locations' %}"  // get the url of the `load_cities` view
+            var countryId = $(this).val();  // get the selected country ID from the HTML input
+
+            $.ajax({                       // initialize an AJAX request
+                url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                data: {
+                'pais': countryId       // add the country id to the GET parameters
+                },
+                success: function (data) {   // `data` is the return of the `load_cities` view function
+                $("#id_locations").html(data);  // replace the contents of the city input with the data that came from the server
+                }
+            });
+ 	
+            document.getElementById("{{form.location.id_for_label}}").disabled = false;
+
+            });
+        </script>
+        <div class="form-row">
+            <div class="col-md">
+                {{form.surface.label_tag}}
+                {{form.surface}}
+            </div>
+            <div class="col-md" id="id_locations">
+                {{form.distance.label_tag}}
+                {{form.distance}}
+            </div>
+        </div>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>{% trans "Financial information" %}</legend>
+        <div class="form-row">
+            <div class="col-md">
+                {{form.businessModel.label_tag}}
+                {{form.businessModel}}
+            </div>
+            <div class="col-md">
+                {{form.co2TonPrice.label_tag}}
+                {{form.co2TonPrice}}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md">
+                <label for="{{form.fuel.label_tag.id_for_label}}">{% trans "Fuel" %}:</label>
+                {{form.fuel}}
+            </div>
+            <div class="col-md">
+                {{form.fuel_price.label_tag}}
+                {{form.fuel_price}}
+            </div>
+            <div class="col-md" id="id_fu">
+                <label for="{{form.fuel_price_unit.id_for_label}}">{% trans "Fuel price per unit" %}:</label>
+                {{form.fuel_price_unit}}
+            </div>
+            <script>
+                $("#{{form.fuel.id_for_label}}").change(function () {
+                var url = "{% url 'async_fu' %}"  // get the url of the `load_cities` view
+                var fuelId = $(this).val();  // get the selected country ID from the HTML input
+
+                $.ajax({                       // initialize an AJAX request
+                    url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                    data: {
+                    'fuel_id': fuelId       // add the country id to the GET parameters
+                    },
+                    success: function (data) {   // `data` is the return of the `load_cities` view function
+                    $("#id_fu").html(data);  // replace the contents of the city input with the data that came from the server
+                    }
+                });
+        
+                document.getElementById("{{form.location.id_for_label}}").disabled = false;
+
+                });
+            </script>
+        </div>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>{% trans "Process information" %}</legend>
+        <div class="form-row">
+            <div class="col-md">
+                {{form.fluid.label_tag}}
+                {{form.fluid}}
+            </div>
+            <div class="col-md">
+                {{form.pressure.label_tag}}
+                {{form.pressure}}
+            </div>
+            <div class="col-md">
+                {{form.pressureUnit.label_tag}}
+                {{form.pressureUnit}}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md">
+                {{form.tempIN.label_tag}}
+                {{form.tempIN}}
+            </div>
+            <div class="col-md">
+                {{form.tempOUT.label_tag}}
+                {{form.tempOUT}}
+            </div>
+        </div>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>{% trans "Consumption profile" %}</legend>
+        <div class="form-row">
+            <div class="col-md">
+                {{form.demand.label_tag}}
+                {{form.demand}}
+            </div>
+            <div class="col-md">
+                {{form.demandUnit.label_tag}}
+                {{form.demandUnit}}
+            </div>
+        </div>
+        <script>
+        $(document).ready(function(){
+        $("#week_prof :checkbox").click(function(){
+            let boxes = $("#week_prof :checkbox")
+            let checked_days = $("#week_prof :checkbox:checked")
+            let porcentaje = 1/checked_days.length
+            for (chbox of boxes){
+                let num_id = chbox.id.slice(0,-9)
+                document.getElementById(num_id).value = 0; 
+            }            
+            for (chbox of checked_days){
+                let num_id = chbox.id.slice(0,-9)
+                document.getElementById(num_id).value = porcentaje; 
+            }
+        });
+        });
+        </script>
+        <div class="form-row">
+            <div class="col-md-2">
+                {{form.hourINI.label_tag}}
+                <input type="time" id="{{form.hourINI.auto_id}}" name="{{form.hourINI.name}}"
+       min="00:00" max="24:00" required>
+            </div>
+            <div class="col-md-2">
+                {{form.hourEND.label_tag}}
+                <input type="time" id="{{form.hourEND.auto_id}}" name="{{form.hourEND.name}}"
+       min="00:00" max="24:00" required>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="col-md-2">
+                {{form.itercontrol.label_tag}}
+                {{form.itercontrol}}
+            </div>
+           
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                Week profile
+            </div>
+        </div>
+
+        <div class="form-row" id="week_prof">
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Mond.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Mond.id_for_label}}_checkbox">{{form.Mond.label}}</label>
+                </div>
+                {{form.Mond}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Tues.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Tues.id_for_label}}_checkbox">{{form.Tues.label}}</label>
+                </div>
+                {{form.Tues}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Wend.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Wend.id_for_label}}_checkbox">{{form.Wend.label}}</label>
+                </div>
+                {{form.Wend}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Thur.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Thur.id_for_label}}_checkbox">{{form.Thur.label}}</label>
+                </div>
+                {{form.Thur}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Fri.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Fri.id_for_label}}_checkbox">{{form.Fri.label}}</label>
+                </div>
+                {{form.Fri}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Sat.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Sat.id_for_label}}_checkbox">{{form.Sat.label}}</label>
+                </div>
+                {{form.Sat}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Sun.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Sun.id_for_label}}_checkbox">{{form.Sun.label}}</label>
+                </div>
+                {{form.Sun}}
+            </div>
+        </div>
+        <script>
+        $(document).ready(function(){
+        $("#month_profile :checkbox").click(function(){
+            let boxes = $("#month_profile :checkbox")
+            let checked_days = $("#month_profile :checkbox:checked")
+            let porcentaje = 1/checked_days.length
+            for (chbox of boxes){
+                let num_id = chbox.id.slice(0,-9)
+                document.getElementById(num_id).value = 0; 
+            }            
+            for (chbox of checked_days){
+                let num_id = chbox.id.slice(0,-9)
+                document.getElementById(num_id).value = porcentaje; 
+            }
+        });
+        });
+        </script>
+
+        <div class="form-row">
+            <div class="col">
+                Month profile
+            </div>
+        </div>
+
+        <div class="form-row" id="month_profile">
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Jan.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Jan.id_for_label}}_checkbox">{{form.Jan.label}}</label>
+                </div>
+                {{form.Jan}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Feb.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Feb.id_for_label}}_checkbox">{{form.Feb.label}}</label>
+                </div>
+                {{form.Feb}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Mar.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Mar.id_for_label}}_checkbox">{{form.Mar.label}}</label>
+                </div>
+                {{form.Mar}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Apr.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Apr.id_for_label}}_checkbox">{{form.Apr.label}}</label>
+                </div>
+                {{form.Apr}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.May.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.May.id_for_label}}_checkbox">{{form.May.label}}</label>
+                </div>
+                {{form.May}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Jun.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Jun.id_for_label}}_checkbox">{{form.Jun.label}}</label>
+                </div>
+                {{form.Jun}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Jul.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Jul.id_for_label}}_checkbox">{{form.Jul.label}}</label>
+                </div>
+                {{form.Jul}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Aug.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Aug.id_for_label}}_checkbox">{{form.Aug.label}}</label>
+                </div>
+                {{form.Aug}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Sep.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Sep.id_for_label}}_checkbox">{{form.Sep.label}}</label>
+                </div>
+                {{form.Sep}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Oct.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Oct.id_for_label}}_checkbox">{{form.Oct.label}}</label>
+                </div>
+                {{form.Oct}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Nov.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Nov.id_for_label}}_checkbox">{{form.Nov.label}}</label>
+                </div>
+                {{form.Nov}}
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{form.Dec.id_for_label}}_checkbox">
+                    <label class="form-check-label" for="{{form.Dec.id_for_label}}_checkbox">{{form.Dec.label}}</label>
+                </div>
+                {{form.Dec}}
+            </div>
+        </div>
+
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend> {% trans "Integration schema" %} </legend>
+        <div class="form-row">
+            <div class="col-md">
+                {{form.num_loops.label_tag}}
+                {{form.num_loops}}
+            </div>
+            <div class="col-md">
+                {{form.n_coll_loop.label_tag}}
+                {{form.n_coll_loop}}
+            </div>
+            <div class="col-md">
+                {{form.almVolumen.label_tag}}
+                {{form.almVolumen}}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md">
+                {{form.connection.label_tag}}
+                {{form.connection}}
+            </div>
+            <div class="col-md" id="id_integrations">
+                {{form.type_integration.label_tag}}
+                {{form.type_integration}}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md">
+                {{form.mofINV.label_tag}}
+                {{form.mofINV}}
+            </div>
+            <div class="col-md">
+                {{form.mofDNI.label_tag}}
+                {{form.mofDNI}}
+            </div>
+            <div class="col-md">
+                {{form.mofProd.label_tag}}
+                {{form.mofProd}}
+            </div>
+        </div>
+
+        <script>
+            $("#{{form.connection.id_for_label}}").change(function () {
+ 	
+                if (document.getElementById("{{form.connection.id_for_label}}").value == "direct"){
+                    document.getElementById("{{form.almVolumen.id_for_label}}").value = 0
+                }
+
+                $.ajax({                       // initialize an AJAX request
+                    url: "{% url 'async_integrations' %}",                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                    data: {
+                    'connection': document.getElementById("{{form.connection.id_for_label}}").value       // add the country id to the GET parameters
+                    },
+                    success: function (data) {   // `data` is the return of the `load_cities` view function
+                    $("#id_integrations").html(data);  // replace the contents of the city input with the data that came from the server
+                    }
+                });
+            });
+        </script>
+    </fieldset>
+    <br>
+    <fieldset disabled>
+        <legend>{% trans "Available soon..." %}</legend>
+        <div class="form-row">
+            <div class="col-md">
+                {{form.orientation.label_tag}}
+                {{form.orientation}}
+            </div>
+            <div class="col-md">
+                {{form.inclination.label_tag}}
+                {{form.inclination}}
+            </div>
+            <div class="col-md">
+                {{form.shadows.label_tag}}
+                {{form.shadows}}
+            </div>
+            <div class="col-md">
+                {{form.terrain.label_tag}}
+                {{form.terrain}}
+            </div>
+        </div>
+    </fieldset>
+    <br>
+    <div class="row justify-content-center" >
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-success btn-block"> {% trans "Simulate" %} </button> 
+        </div>
+    </div>
+
+</form>
+{% endblock %}
