@@ -69,7 +69,7 @@ def new_simulation(request):
             
             if inputsDjango['itercontrol']=='paso_10min' or inputsDjango['itercontrol']=='paso_15min':
                 
-                minute={'ten_min_ini_sim':sim_form.cleaned_data['hourINI'].minute, 'ten_min_fin_sim':sim_form.cleaned_data['hourEND'].minute,'fifteen_min_ini_sim':sim_form.cleaned_data['hourINI'].minute, 'fifteen_min_fin_sim':sim_form.cleaned_data['hourEND'].minute}
+                minute={'ten_min_ini_sim':sim_form.cleaned_data['hour_ini_sim'].minute, 'ten_min_fin_sim':sim_form.cleaned_data['hour_fin_sim'].minute,'fifteen_min_ini_sim':sim_form.cleaned_data['hour_ini_sim'].minute, 'fifteen_min_fin_sim':sim_form.cleaned_data['hour_fin_sim'].minute}
                 if inputsDjango['itercontrol']=='paso_10min':
                     if minute['ten_min_ini_sim'] in range(0,9):
                         ten_min_ini_sim=0
@@ -115,7 +115,7 @@ def new_simulation(request):
                     elif minute['fifteen_min_fin_sim'] in range(45,59):
                         fifteen_min_fin_sim=3
                 
-                simControl={'finance_study':1,'mes_ini_sim':1,'dia_ini_sim':1,'hora_ini_sim':1,'mes_fin_sim':12,'dia_fin_sim':31,'hora_fin_sim':24, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':ten_min_ini_sim, 'ten_min_fin_sim':ten_min_fin_sim,'fifteen_min_ini_sim':fifteen_min_ini_sim, 'fifteen_min_fin_sim':fifteen_min_fin_sim}    
+                simControl={'finance_study':1,'mes_ini_sim':1,'dia_ini_sim':1,'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':12,'dia_fin_sim':31,'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':ten_min_ini_sim, 'ten_min_fin_sim':ten_min_fin_sim,'fifteen_min_ini_sim':fifteen_min_ini_sim, 'fifteen_min_fin_sim':fifteen_min_fin_sim}    
             
             else:
                 simControl={'finance_study':1,'mes_ini_sim':1,'dia_ini_sim':1,'hora_ini_sim':1,'mes_fin_sim':12,'dia_fin_sim':31,'hora_fin_sim':24, 'itercontrol':inputsDjango['itercontrol']}

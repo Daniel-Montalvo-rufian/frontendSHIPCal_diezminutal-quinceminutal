@@ -84,8 +84,8 @@ class SimulationForm(forms.ModelForm):
             'demand':forms.NumberInput(attrs={'class':'form-control'}),
             'demandUnit':forms.Select(attrs={'class':'custom-select'}),
 
-            # 'hourEND':forms.TimeInput(attrs={'class':'form-control'}),
-            # 'hourINI':forms.TimeInput(attrs={'class':'form-control'}),
+             'hourEND':forms.TimeInput(attrs={'class':'form-control'}),
+             'hourINI':forms.TimeInput(attrs={'class':'form-control'}),
             'Mond':forms.NumberInput(attrs={'class':'form-control'}),
             'Tues':forms.NumberInput(attrs={'class':'form-control'}),
             'Wend':forms.NumberInput(attrs={'class':'form-control'}),
