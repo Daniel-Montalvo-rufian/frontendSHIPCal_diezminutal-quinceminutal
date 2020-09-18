@@ -12,6 +12,8 @@ class SimulationForm(forms.ModelForm):
         cleaned_data = super().clean()
         location = cleaned_data.get("location")
         itercontrol= cleaned_data.get("itercontrol")
+        hour_fin_sim= cleaned_data.get("hour_fin_sim").hour
+        hour_ini_sim=cleaned_data.get("hour_ini_sim").hour
         if itercontrol=='paso_10min':
             if location[-8:-3]!='10min':
                  raise ValidationError(
@@ -27,6 +29,10 @@ class SimulationForm(forms.ModelForm):
             if location[-5:]=='10min' or location[-5:]=='15min':
                 raise ValidationError(
                     'TMY must be hourly-step resolution'
+                )
+            if hour_ini_sim==0 or hour_fin_sim==0:
+                raise ValidationError(
+                    'For hourly steps, the first hour of the day in the TMY is 1, not 0'
                 )
     class Meta:
         model = Simulation
@@ -84,8 +90,16 @@ class SimulationForm(forms.ModelForm):
             'demand':forms.NumberInput(attrs={'class':'form-control'}),
             'demandUnit':forms.Select(attrs={'class':'custom-select'}),
 
-             'hourEND':forms.TimeInput(attrs={'class':'form-control'}),
-             'hourINI':forms.TimeInput(attrs={'class':'form-control'}),
+            'hourEND':forms.NumberInput(attrs={'class':'form-control'}),
+            'hourINI':forms.NumberInput(attrs={'class':'form-control'}),
+            
+            'month_ini_sim':forms.NumberInput(attrs={'class':'form-control'}),
+            'month_fin_sim':forms.NumberInput(attrs={'class':'form-control'}),
+            'day_ini_sim ':forms.NumberInput(attrs={'class':'form-control'}),
+            'day_fin_sim':forms.NumberInput(attrs={'class':'form-control'}),
+            'hour_fin_sim' : forms.TimeInput(attrs={'class':'form-control'}),
+            'hour_ini_sim': forms.TimeInput(attrs={'class':'form-control'}), 
+            
             'Mond':forms.NumberInput(attrs={'class':'form-control'}),
             'Tues':forms.NumberInput(attrs={'class':'form-control'}),
             'Wend':forms.NumberInput(attrs={'class':'form-control'}),

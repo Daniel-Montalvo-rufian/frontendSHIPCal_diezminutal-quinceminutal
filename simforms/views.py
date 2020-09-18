@@ -57,8 +57,8 @@ def new_simulation(request):
                 'fuelPrice':inputsDjango['fuel_price']*sim.fuel_price_unit.conversion_factor, #converts into EUR/kWh
                 'co2factor':sim.fuel.co2factor*sim.fuel.co2units.conversion_factor, # [CO2tons/kWh]
                 'date':sim.date,'fuel':sim.fuel.fuel,'location_aux':sim.location.location_aux,
-                'hourINI':sim_form.cleaned_data['hourINI'].hour,
-                'hourEND':sim_form.cleaned_data['hourEND'].hour,
+                'hour_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,
+                'hour_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour,
 
             })
             inputsDjango.update({'pressureUnit':'bar','demandUnit':'kWh','fuelUnit':'kWh',})
@@ -115,10 +115,10 @@ def new_simulation(request):
                     elif minute['fifteen_min_fin_sim'] in range(45,59):
                         fifteen_min_fin_sim=3
                 
-                simControl={'finance_study':1,'mes_ini_sim':1,'dia_ini_sim':1,'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':12,'dia_fin_sim':31,'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':ten_min_ini_sim, 'ten_min_fin_sim':ten_min_fin_sim,'fifteen_min_ini_sim':fifteen_min_ini_sim, 'fifteen_min_fin_sim':fifteen_min_fin_sim}    
+                simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':ten_min_ini_sim, 'ten_min_fin_sim':ten_min_fin_sim,'fifteen_min_ini_sim':fifteen_min_ini_sim, 'fifteen_min_fin_sim':fifteen_min_fin_sim}    
             
             else:
-                simControl={'finance_study':1,'mes_ini_sim':1,'dia_ini_sim':1,'hora_ini_sim':1,'mes_fin_sim':12,'dia_fin_sim':31,'hora_fin_sim':24, 'itercontrol':inputsDjango['itercontrol']}
+                simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol']}
             
             template_vars,plotVars,reportsVar,version = SHIPcal(1,inputsDjango,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],200,confReport,modificators,desginDict,simControl,sim.id)
             

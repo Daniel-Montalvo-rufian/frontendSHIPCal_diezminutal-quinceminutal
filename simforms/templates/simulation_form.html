@@ -158,6 +158,47 @@
     </fieldset>
     <br>
     <fieldset>
+        <legend>{% trans "Beginning and ending of simulation" %}</legend>
+         <div class="form-row">
+            <div class="col-md-2">
+                {{form.itercontrol.label_tag}}
+                {{form.itercontrol}}
+            </div>
+           
+        </div>
+        <div class="form-row">
+            <div class="col-md">
+                {{form.month_ini_sim.label_tag}}
+                {{form.month_ini_sim}}
+            </div>
+            <div class="col-md">
+                {{form.day_ini_sim.label_tag}}
+                {{form.day_ini_sim}}
+            </div>
+            <div class="col-md-2">
+                {{form.hour_ini_sim.label_tag}}
+                <input type="time" id="{{form.hour_ini_sim.auto_id}}" name="{{form.hour_ini_sim.name}}"
+       min="00:00" max="24:00" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md">
+                {{form.month_fin_sim.label_tag}}
+                {{form.month_fin_sim}}
+            </div>
+            <div class="col-md">
+                {{form.day_fin_sim.label_tag}}
+                {{form.day_fin_sim}}
+            </div>
+            <div class="col-md-2">
+                {{form.hour_fin_sim.label_tag}}
+                <input type="time" id="{{form.hour_fin_sim.auto_id}}" name="{{form.hour_fin_sim.name}}"
+       min="00:00" max="24:00" required>
+            </div>
+        </div>
+        
+    <br>
+    <fieldset>
         <legend>{% trans "Consumption profile" %}</legend>
         <div class="form-row">
             <div class="col-md">
@@ -187,25 +228,17 @@
         });
         </script>
         <div class="form-row">
-            <div class="col-md-2">
+            <div class="col-md">
                 {{form.hourINI.label_tag}}
-                <input type="time" id="{{form.hourINI.auto_id}}" name="{{form.hourINI.name}}"
-       min="00:00" max="24:00" required>
+                {{form.hourINI}}
             </div>
-            <div class="col-md-2">
+            <div class="col-md">
                 {{form.hourEND.label_tag}}
-                <input type="time" id="{{form.hourEND.auto_id}}" name="{{form.hourEND.name}}"
-       min="00:00" max="24:00" required>
+                {{form.hourEND}}
             </div>
         </div>
         
-        <div class="form-row">
-            <div class="col-md-2">
-                {{form.itercontrol.label_tag}}
-                {{form.itercontrol}}
-            </div>
-           
-        </div>
+       
 
         <div class="form-row">
             <div class="col">

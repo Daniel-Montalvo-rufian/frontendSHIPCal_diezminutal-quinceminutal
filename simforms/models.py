@@ -43,10 +43,24 @@ class Simulation(models.Model):
     demand = models.FloatField(_("Annual energy demand"),validators=[validators.MinValueValidator(0.001, message=_("The demand cannot be less or equal to 0"))])
     demandUnit = models.FloatField(_("Demand unit"), choices=[(1,_("kWh/year")),(1000,_("MWh/year")),(0.000277778, _("KJ/year")),(0.000293071,_("BTU/year")),(0.01163,_("kcal/year"))]) #The factor to convert the demand into kWh
 
+    #Beginning and ending of simulation
+    month_ini_sim=models.FloatField(_("Month in which the simulation starts"), )
+    month_fin_sim=models.FloatField(_("Month in which the simulation ends"), )
+    day_ini_sim=models.FloatField(_("Day in which the simulation starts"), )
+    day_fin_sim=models.FloatField(_("Day in which the simulation ends"), )
+    hour_fin_sim = models.TimeField(_("Ending time of simulation. In case of hourly simulations: 1-24H, in case of ten-min or fifteen-min: 0-24H "), )
+    hour_ini_sim = models.TimeField(_("Starting time of simultation. In case of hourly simulations: 1-24H, in case of ten-min or fifteen-min: 0-24H "), )
+
+
     #Consumption profile
+    #Hourly
+    # ten_min_end= models.FloatField(_("), )
+    # ten_min_ini= models.FloatField(_("Ending time of simulation, from 0 to 24H"), )
+    # fifteen_min_end=
+    #fifteen_min_ini
     #Daily
-    hourEND = models.TimeField(_("Ending time"), )
-    hourINI = models.TimeField(_("Starting time"))
+    hourEND = models.FloatField(_("Ending time of simulation"), )
+    hourINI= models.FloatField(_("Starting time of simultation"))
     #Monthly
     Jan = models.FloatField(_("Jan"), validators=[validators.MinValueValidator(0, message=_("This cannot be less than 0")),validators.MaxValueValidator(1, message=_("This cannot be greater than 1"))], default=0)
     Feb = models.FloatField(_("Feb"),validators=[validators.MinValueValidator(0, message=_("This cannot be less than 0")),validators.MaxValueValidator(1, message=_("This cannot be greater than 1"))], default=0)
