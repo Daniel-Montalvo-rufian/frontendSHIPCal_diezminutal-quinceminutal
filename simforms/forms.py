@@ -42,6 +42,7 @@ class SimulationForm(forms.ModelForm):
             'co2TonPrice', 'businessModel', 'fuel_price', 'fuel', 'fuel_price_unit',
             'fluid','tempOUT','tempIN','pressureUnit', 'pressure',
             'demand', 'demandUnit', 'hourEND', 'hourINI', 'itercontrol',
+            'month_ini_sim', 'month_fin_sim', 'day_ini_sim', 'day_fin_sim', 'hour_fin_sim', 'hour_ini_sim',
             'Mond', 'Tues', 'Wend', 'Thur', 'Fri', 'Sat', 'Sun',
             'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
             'num_loops', 'n_coll_loop','connection', 'type_integration', 'almVolumen',
