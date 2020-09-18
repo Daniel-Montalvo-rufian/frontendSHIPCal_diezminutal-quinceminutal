@@ -56,7 +56,9 @@ class SimulationForm(forms.ModelForm):
             'terrain':forms.Select(attrs={'class':'custom-select'}),
 
             'itercontrol':forms.Select(attrs={'class':'custom-select'}),
-
+            'to_solartime':forms.Select(attrs={'class':'custom-select'}),
+            'huso':forms.NumberInput(attrs={'class':'form-control'}),
+            
             'num_loops':forms.NumberInput(attrs={'class':'form-control'}),
             'n_coll_loop':forms.NumberInput(attrs={'class':'form-control'}),
             'connection':forms.Select(attrs={'class':'custom-select'}),

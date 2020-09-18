@@ -14,6 +14,9 @@ class Simulation(models.Model):
     industry = models.CharField(_("Industry"), max_length=30)
     sectorIndustry = models.CharField(_("Industry sector"), max_length=30)
     process = models.TextField(_("Process description"), blank=True, null=True)
+    #Solar time
+    to_solartime= models.CharField(_("Calculate solar time"), choices=[('on',_("Yes")),('off',_("No"))], max_length=3)
+    huso=models.FloatField(_("In case you have choosen to calculate the solar time, write the difference between the time format of the TMY and the UTC"),)
     #Simulation date and time
     date = models.DateTimeField(_("Date"), auto_now=True)
     itercontrol= models.CharField(_("Step control"), choices=[('paso_10min',_("ten-minutes steps")),('paso_15min',_("fifteen-minutes steps")),('horario',_("hourly steps"))], max_length=10)
