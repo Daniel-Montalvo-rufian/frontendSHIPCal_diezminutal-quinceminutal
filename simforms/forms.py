@@ -39,6 +39,7 @@ class SimulationForm(forms.ModelForm):
         fields = [
             'name','email','industry','sectorIndustry', 'process',
             'location', 'surface', 'distance',
+            'to_solartime', 'huso',
             'co2TonPrice', 'businessModel', 'fuel_price', 'fuel', 'fuel_price_unit',
             'fluid','tempOUT','tempIN','pressureUnit', 'pressure',
             'demand', 'demandUnit', 'hourEND', 'hourINI', 'itercontrol',
