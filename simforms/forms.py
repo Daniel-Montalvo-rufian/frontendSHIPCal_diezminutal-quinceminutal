@@ -15,18 +15,18 @@ class SimulationForm(forms.ModelForm):
         hour_fin_sim= cleaned_data.get("hour_fin_sim").hour
         hour_ini_sim=cleaned_data.get("hour_ini_sim").hour
         if itercontrol=='paso_10min':
-            if location[-8:-3]!='10min':
+            if location.city[-5:]!='10min':
                  raise ValidationError(
-                    'TMY must finish with 10min.dat for teen-minutes steps'
+                    'TMY must finish with 10min for teen-minutes steps'
                 )
         elif itercontrol=='paso_15min':
-             if location[-8:-3]!='15min':
+             if location.city[-5:]!='15min':
                  raise ValidationError(
-                    'TMY must finish with 15min.dat for fifteen-minutes steps'
+                    'TMY must finish with 15min for fifteen-minutes steps'
                 )
 
         elif itercontrol!='paso_10min' and    itercontrol!='paso_15min'  :
-            if location[-5:]=='10min' or location[-5:]=='15min':
+            if location.city[-5:]=='10min' or location.city[-5:]=='15min':
                 raise ValidationError(
                     'TMY must be hourly-step resolution'
                 )

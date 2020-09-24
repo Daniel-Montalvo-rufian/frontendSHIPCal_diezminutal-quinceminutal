@@ -40,7 +40,7 @@
     <br>
     <fieldset>
         <legend>{% trans "Calculate solar time" %}</legend>
-            <div class="col-md"
+            <div class="col-md">
                 <div class="form-row">
                     {{form.to_solartime.label_tag}}
                     {{form.to_solartime}}
@@ -50,6 +50,7 @@
                     {{form.huso}}
                 </div>
             </div>   
+    </fieldset>
     <br>
     <fieldset>
         <legend>{% trans "Location information" %}</legend>
@@ -211,7 +212,7 @@
        min="00:00" max="24:00" required>
             </div>
         </div>
-        
+    </fieldset>   
     <br>
     <fieldset>
         <legend>{% trans "Consumption profile" %}</legend>
