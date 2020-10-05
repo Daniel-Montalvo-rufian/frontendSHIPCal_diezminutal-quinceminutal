@@ -13,7 +13,7 @@ def all_results(request):
     every_simulation = SimResults.objects.all()
     
     return render(request, 'results.html', {'simulations':every_simulation})
-
+"hola"
 
 def result(request, sim_id):
     sim_results = SimResults.objects.get(simulation=sim_id)
