@@ -63,7 +63,9 @@ class PlotVars(models.Model):
     type_integration = models.CharField(_("Integration schema"), choices=integration_schemas, max_length=20)
     origin = models.SmallIntegerField(_("Origin"))
     n_years_sim = models.SmallIntegerField(_("Years simulated"))
-
+    
+    itercontrol=models.CharField(_("Control of step resolution"),  max_length=35)
+    
     Break_cost = models.TextField(_("Break cost")) #list
     Acum_FCF = models.TextField(_("Acumulated FCF")) #list
     FCF = models.TextField() #list

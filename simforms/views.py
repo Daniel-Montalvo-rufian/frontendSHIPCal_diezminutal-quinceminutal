@@ -144,6 +144,11 @@ def new_simulation(request):
                 'Q_defocus':str(plotVars['Q_defocus'])[1:-1], 
                 'T_alm_K':str(plotVars['T_alm_K'])[1:-1], 
             })
+            del plotVars['Q_prod_steam']
+            del plotVars['Q_drum']
+            del plotVars['SD_min_energy']
+            del plotVars['SD_max_energy']
+            del plotVars['SD_energy']
             pv = PlotVars(**plotVars)
             pv.save()
 

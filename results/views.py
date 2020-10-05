@@ -6,7 +6,7 @@ from numpy import array
 
 from SHIPcal.Plot_modules.plottingSHIPcal import SankeyPlot,prodWinterPlot,prodSummerPlot,financePlot,storageWinter,storageSummer,prodMonths,savingsMonths #noqa
 from SHIPcal.Plot_modules.plottingSHIPcal import mollierPlotST,mollierPlotSH,rhoTempPlotOil,viscTempPlotOil,rhoTempPlotSalt,viscTempPlotSalt #noqa
-
+from SHIPcal.Plot_modules.plottingSHIPcal_2 import prodMonths2, prodSummerPlot2, prodWinterPlot2, savingsMonths2
 # Create your views here.
 
 def all_results(request):
@@ -42,11 +42,17 @@ def result(request, sim_id):
         'Q_defocus':[float(item) for item in (sim_results.plotVars.Q_defocus).split(",")], 
         'T_alm_K':[float(item) for item in (sim_results.plotVars.T_alm_K).split(",")], 
     })
-
-    plots = {
-        'image_financePlot': financePlot(**pv_d),
-        'image_prodMonths': prodMonths(**pv_d)
-    }
+    print('itercontrol es:', sim_results.plotVars.itercontrol)
+    if sim_results.plotVars.itercontrol!='paso_10min' and sim_results.plotVars.itercontrol!='paso_15min':
+        plots = {
+            'image_financePlot': financePlot(**pv_d),
+            'image_prodMonths': prodMonths(**pv_d)
+            }
+    else:
+        plots = {
+            'image_financePlot': financePlot(**pv_d),
+            'image_prodMonths': prodMonths2(**pv_d)
+            }
     return render(request,'imp.html', {'s':sim_results, 'rv_l':rv_l, 'p':plots})
 
 def result_instalation(request, sim_id):
@@ -106,15 +112,26 @@ def result_production(request, sim_id):
     elif fluid=="moltenSalt": 
         image_prop1 = rhoTempPlotSalt(**pv_d) #(12) Plot thermal oil properties Rho & Cp vs Temp
         image_prop2 = viscTempPlotSalt(**pv_d) #(13) Plot thermal oil properties Viscosities vs Temp
-
-    plots = {
-        'image_prodMonths': prodMonths(**pv_d),
-        'image_Sankey': SankeyPlot(**pv_d),
-        'image_prodSummerPlot': prodSummerPlot(**pv_d),
-        'image_prodWinterPlot': prodWinterPlot(**pv_d),
-        'image_prop1':image_prop1,
-        'image_prop2':image_prop2
-    }
+    
+    if sim_results.plotVars.itercontrol!='paso_10min' and sim_results.plotVars.itercontrol!='paso_15min':
+        plots = {
+            'image_prodMonths': prodMonths(**pv_d),
+            'image_Sankey': SankeyPlot(**pv_d),
+            'image_prodSummerPlot': prodSummerPlot(**pv_d),
+            'image_prodWinterPlot': prodWinterPlot(**pv_d),
+            'image_prop1':image_prop1,
+            'image_prop2':image_prop2
+            }
+    else:
+        plots = {
+            'image_prodMonths': prodMonths2(**pv_d),
+            'image_Sankey': SankeyPlot(**pv_d),
+            'image_prodSummerPlot': prodSummerPlot2(**pv_d),
+            'image_prodWinterPlot': prodWinterPlot2(**pv_d),
+            'image_prop1':image_prop1,
+            'image_prop2':image_prop2
+            }
+        
 
     return render(request,'imp_prod.html', {'s':sim_results, 'p':plots,})
     
@@ -153,10 +170,14 @@ def result_finance(request, sim_id):
         'Q_defocus':[float(item) for item in (sim_results.plotVars.Q_defocus).split(",")], 
         'T_alm_K':[float(item) for item in (sim_results.plotVars.T_alm_K).split(",")], 
     })
-
-    plots = {
-        'image_financePlot': financePlot(**pv_d),
-        'image_savingsMonths': savingsMonths(**pv_d),
-    }
-
+    if sim_results.plotVars.itercontrol!='paso_10min' and sim_results.plotVars.itercontrol!='paso_15min':
+        plots = {
+            'image_financePlot': financePlot(**pv_d),
+            'image_savingsMonths': savingsMonths(**pv_d),
+            }
+    else:
+        plots = {
+            'image_financePlot': financePlot(**pv_d),
+            'image_savingsMonths': savingsMonths2(**pv_d),
+            }
     return render(request,'imp_finance.html', {'s':sim_results, 'pv_d':pv_d, 'rv_l':rv_l, 'p':plots, 't':t_data})
