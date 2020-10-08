@@ -68,59 +68,67 @@ def new_simulation(request):
             desginDict={'num_loops':sim.num_loops,'n_coll_loop':sim.n_coll_loop,'type_integration':sim.type_integration,'almVolumen':sim.almVolumen}
             
             if inputsDjango['itercontrol']=='paso_10min' or inputsDjango['itercontrol']=='paso_15min':
-                
-                minute={'ten_min_ini_sim':sim_form.cleaned_data['hour_ini_sim'].minute, 'ten_min_fin_sim':sim_form.cleaned_data['hour_fin_sim'].minute,'fifteen_min_ini_sim':sim_form.cleaned_data['hour_ini_sim'].minute, 'fifteen_min_fin_sim':sim_form.cleaned_data['hour_fin_sim'].minute}
-                if inputsDjango['itercontrol']=='paso_10min':
-                    if minute['ten_min_ini_sim'] in range(0,10):
-                        ten_min_ini_sim=0
-                    elif minute['ten_min_ini_sim'] in range(10,20):
-                        ten_min_ini_sim=1
-                    elif minute['ten_min_ini_sim'] in range(20,30):
-                        ten_min_ini_sim=2
-                    elif minute['ten_min_ini_sim'] in range(30,40):
-                        ten_min_ini_sim=3
-                    elif minute['ten_min_ini_sim'] in range(40,50):
-                        ten_min_ini_sim=4
-                    elif minute['ten_min_ini_sim'] in range(50,60):
-                        ten_min_ini_sim=5
-                    if minute['ten_min_fin_sim'] in range(0,10):
-                        ten_min_fin_sim=0
-                    elif minute['ten_min_fin_sim'] in range(10,20):
-                        ten_min_fin_sim=1
-                    elif minute['ten_min_fin_sim'] in range(20,30):
-                        ten_min_fin_sim=2
-                    elif minute['ten_min_fin_sim'] in range(30,40):
-                        ten_min_fin_sim=3
-                    elif minute['ten_min_fin_sim'] in range(40,50):
-                        ten_min_fin_sim=4
-                    elif minute['ten_min_fin_sim'] in range(50,60):
-                        ten_min_fin_sim=5
+                if inputsDjango['annual']=='yes':
+                     if inputsDjango['itercontrol']=='paso_10min':
+                        simControl={'finance_study':1,'mes_ini_sim':1,'dia_ini_sim':1,'hora_ini_sim':0,'mes_fin_sim':12,'dia_fin_sim':31,'hora_fin_sim':24, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':0, 'ten_min_fin_sim':0, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}
+                     elif inputsDjango['itercontrol']=='paso_15min':
+                        simControl={'finance_study':1,'mes_ini_sim':1,'dia_ini_sim':1,'hora_ini_sim':0,'mes_fin_sim':12,'dia_fin_sim':31,'hora_fin_sim':24, 'itercontrol':inputsDjango['itercontrol'],'fifteen_min_ini_sim':0, 'fifteen_min_fin_sim':0, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}
+                else:
+                    minute={'ten_min_ini_sim':sim_form.cleaned_data['hour_ini_sim'].minute, 'ten_min_fin_sim':sim_form.cleaned_data['hour_fin_sim'].minute,'fifteen_min_ini_sim':sim_form.cleaned_data['hour_ini_sim'].minute, 'fifteen_min_fin_sim':sim_form.cleaned_data['hour_fin_sim'].minute}
+                    if inputsDjango['itercontrol']=='paso_10min':
+                        if minute['ten_min_ini_sim'] in range(0,10):
+                            ten_min_ini_sim=0
+                        elif minute['ten_min_ini_sim'] in range(10,20):
+                                ten_min_ini_sim=1
+                        elif minute['ten_min_ini_sim'] in range(20,30):
+                            ten_min_ini_sim=2
+                        elif minute['ten_min_ini_sim'] in range(30,40):
+                            ten_min_ini_sim=3
+                        elif minute['ten_min_ini_sim'] in range(40,50):
+                            ten_min_ini_sim=4
+                        elif minute['ten_min_ini_sim'] in range(50,60):
+                            ten_min_ini_sim=5
+                        if minute['ten_min_fin_sim'] in range(0,10):
+                            ten_min_fin_sim=0
+                        elif minute['ten_min_fin_sim'] in range(10,20):
+                            ten_min_fin_sim=1
+                        elif minute['ten_min_fin_sim'] in range(20,30):
+                            ten_min_fin_sim=2
+                        elif minute['ten_min_fin_sim'] in range(30,40):
+                            ten_min_fin_sim=3
+                        elif minute['ten_min_fin_sim'] in range(40,50):
+                            ten_min_fin_sim=4
+                        elif minute['ten_min_fin_sim'] in range(50,60):
+                            ten_min_fin_sim=5
+                        
+                        simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':ten_min_ini_sim, 'ten_min_fin_sim':ten_min_fin_sim, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}     
+                     
+                    elif inputsDjango['itercontrol']=='paso_15min':
                     
-                    simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':ten_min_ini_sim, 'ten_min_fin_sim':ten_min_fin_sim, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}     
-                     #simControl={'finance_study':1,'mes_ini_sim':1,'dia_ini_sim':1,'hora_ini_sim':0,'mes_fin_sim':12,'dia_fin_sim':31,'hora_fin_sim':24, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':0, 'ten_min_fin_sim':0, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}
-                elif inputsDjango['itercontrol']=='paso_15min':
+                        if minute['fifteen_min_ini_sim'] in range(0,15):
+                            fifteen_min_ini_sim=0
+                        elif minute['fifteen_min_ini_sim'] in range(15,30):
+                            fifteen_min_ini_sim=1
+                        elif minute['fifteen_min_ini_sim'] in range(30,45):
+                            fifteen_min_ini_sim=2
+                        elif minute['fifteen_min_ini_sim'] in range(45,60):
+                            fifteen_min_ini_sim=3
+                        if minute['fifteen_min_fin_sim'] in range(0,15):
+                            fifteen_min_fin_sim=0
+                        elif minute['fifteen_min_fin_sim'] in range(15,30):
+                            fifteen_min_fin_sim=1
+                        elif minute['fifteen_min_fin_sim'] in range(30,45):
+                            fifteen_min_fin_sim=2
+                        elif minute['fifteen_min_fin_sim'] in range(45,60):
+                            fifteen_min_fin_sim=3
                     
-                    if minute['fifteen_min_ini_sim'] in range(0,15):
-                        fifteen_min_ini_sim=0
-                    elif minute['fifteen_min_ini_sim'] in range(15,30):
-                        fifteen_min_ini_sim=1
-                    elif minute['fifteen_min_ini_sim'] in range(30,45):
-                        fifteen_min_ini_sim=2
-                    elif minute['fifteen_min_ini_sim'] in range(45,60):
-                        fifteen_min_ini_sim=3
-                    if minute['fifteen_min_fin_sim'] in range(0,15):
-                        fifteen_min_fin_sim=0
-                    elif minute['fifteen_min_fin_sim'] in range(15,30):
-                        fifteen_min_fin_sim=1
-                    elif minute['fifteen_min_fin_sim'] in range(30,45):
-                        fifteen_min_fin_sim=2
-                    elif minute['fifteen_min_fin_sim'] in range(45,60):
-                        fifteen_min_fin_sim=3
-                
-                    simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'fifteen_min_ini_sim':fifteen_min_ini_sim, 'fifteen_min_fin_sim':fifteen_min_fin_sim, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}    
+                        simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'fifteen_min_ini_sim':fifteen_min_ini_sim, 'fifteen_min_fin_sim':fifteen_min_fin_sim, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}    
             
             else:
-                simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}
+                if inputsDjango['annual']=='yes':
+                    simControl={'finance_study':1,'mes_ini_sim':1,'dia_ini_sim':1,'hora_ini_sim':1,'mes_fin_sim':12,'dia_fin_sim':31,'hora_fin_sim':24, 'itercontrol':inputsDjango['itercontrol'],'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}
+                else:
+                    simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}
             
             template_vars,plotVars,reportsVar,version = SHIPcal(1,inputsDjango,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],200,confReport,modificators,desginDict,simControl,sim.id)
             

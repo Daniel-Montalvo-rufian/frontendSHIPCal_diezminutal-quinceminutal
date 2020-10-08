@@ -42,7 +42,7 @@ class SimulationForm(forms.ModelForm):
             'to_solartime', 'huso',
             'co2TonPrice', 'businessModel', 'fuel_price', 'fuel', 'fuel_price_unit',
             'fluid','tempOUT','tempIN','pressureUnit', 'pressure',
-            'demand', 'demandUnit', 'hourEND', 'hourINI', 'itercontrol',
+            'demand', 'demandUnit', 'hourEND', 'hourINI', 'itercontrol','annual',
             'month_ini_sim', 'month_fin_sim', 'day_ini_sim', 'day_fin_sim', 'hour_fin_sim', 'hour_ini_sim',
             'Mond', 'Tues', 'Wend', 'Thur', 'Fri', 'Sat', 'Sun',
             'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
@@ -59,6 +59,7 @@ class SimulationForm(forms.ModelForm):
             'itercontrol':forms.Select(attrs={'class':'custom-select'}),
             'to_solartime':forms.Select(attrs={'class':'custom-select'}),
             'huso':forms.NumberInput(attrs={'class':'form-control'}),
+            'annual':forms.Select(attrs={'class':'custom-select'}),
             
             'num_loops':forms.NumberInput(attrs={'class':'form-control'}),
             'n_coll_loop':forms.NumberInput(attrs={'class':'form-control'}),

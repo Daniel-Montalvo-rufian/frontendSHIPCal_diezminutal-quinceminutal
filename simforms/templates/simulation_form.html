@@ -172,7 +172,7 @@
     </fieldset>
     <br>
     <fieldset>
-        <legend>{% trans "Beginning and ending of simulation" %}</legend>
+        <legend>{% trans "Beginning and ending of simulation. " %}</legend>
          <div class="form-row">
             <div class="col-md-2">
                 {{form.itercontrol.label_tag}}
@@ -180,6 +180,16 @@
             </div>
           
         </div>
+        <br>
+        <div class="form-row">
+            <div class="col-md-2">
+                {{form.annual.label_tag}}
+                {{form.annual}}
+            </div>
+          
+        </div>
+        <br>
+        <span> {% trans "Only if you have chosen not to simulate in the full year" %}: </span>
         <br>
         <div class="form-row">
             <div class="col-md">

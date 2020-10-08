@@ -20,6 +20,7 @@ class Simulation(models.Model):
     #Simulation date and time
     date = models.DateTimeField(_("Date"), auto_now=True)
     itercontrol= models.CharField(_("Step control"), choices=[('paso_10min',_("ten-minutes steps")),('paso_15min',_("fifteen-minutes steps")),('horario',_("hourly steps"))], max_length=10)
+    annual=models.CharField(_("In case you want to simulate in a full year"), choices=[('yes',_("Yes")),('no',_("No"))], max_length=3)
     #Financial data
     co2TonPrice = models.FloatField(validators=[validators.MinValueValidator(0, message=_("The CO2 price cannot be less than 0"))])
     businessModel = models.CharField(_("Business model"), choices=[('turnkey',_("Turnkey project")),('ESCO','ESCO')], max_length=10)
