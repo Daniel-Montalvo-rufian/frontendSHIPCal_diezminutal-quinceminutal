@@ -71,50 +71,50 @@ def new_simulation(request):
                 
                 minute={'ten_min_ini_sim':sim_form.cleaned_data['hour_ini_sim'].minute, 'ten_min_fin_sim':sim_form.cleaned_data['hour_fin_sim'].minute,'fifteen_min_ini_sim':sim_form.cleaned_data['hour_ini_sim'].minute, 'fifteen_min_fin_sim':sim_form.cleaned_data['hour_fin_sim'].minute}
                 if inputsDjango['itercontrol']=='paso_10min':
-                    if minute['ten_min_ini_sim'] in range(0,9):
+                    if minute['ten_min_ini_sim'] in range(0,10):
                         ten_min_ini_sim=0
-                    elif minute['ten_min_ini_sim'] in range(10,19):
+                    elif minute['ten_min_ini_sim'] in range(10,20):
                         ten_min_ini_sim=1
-                    elif minute['ten_min_ini_sim'] in range(20,29):
+                    elif minute['ten_min_ini_sim'] in range(20,30):
                         ten_min_ini_sim=2
-                    elif minute['ten_min_ini_sim'] in range(30,39):
+                    elif minute['ten_min_ini_sim'] in range(30,40):
                         ten_min_ini_sim=3
-                    elif minute['ten_min_ini_sim'] in range(40,49):
+                    elif minute['ten_min_ini_sim'] in range(40,50):
                         ten_min_ini_sim=4
-                    elif minute['ten_min_ini_sim'] in range(50,59):
+                    elif minute['ten_min_ini_sim'] in range(50,60):
                         ten_min_ini_sim=5
-                    if minute['ten_min_fin_sim'] in range(0,9):
+                    if minute['ten_min_fin_sim'] in range(0,10):
                         ten_min_fin_sim=0
-                    elif minute['ten_min_fin_sim'] in range(10,19):
+                    elif minute['ten_min_fin_sim'] in range(10,20):
                         ten_min_fin_sim=1
-                    elif minute['ten_min_fin_sim'] in range(20,29):
+                    elif minute['ten_min_fin_sim'] in range(20,30):
                         ten_min_fin_sim=2
-                    elif minute['ten_min_fin_sim'] in range(30,39):
+                    elif minute['ten_min_fin_sim'] in range(30,40):
                         ten_min_fin_sim=3
-                    elif minute['ten_min_fin_sim'] in range(40,49):
+                    elif minute['ten_min_fin_sim'] in range(40,50):
                         ten_min_fin_sim=4
-                    elif minute['ten_min_fin_sim'] in range(50,59):
+                    elif minute['ten_min_fin_sim'] in range(50,60):
                         ten_min_fin_sim=5
-                
-                    # simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':ten_min_ini_sim, 'ten_min_fin_sim':ten_min_fin_sim, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}     
-                    simControl={'finance_study':1,'mes_ini_sim':1,'dia_ini_sim':1,'hora_ini_sim':0,'mes_fin_sim':12,'dia_fin_sim':31,'hora_fin_sim':24, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':0, 'ten_min_fin_sim':0, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}
+                    
+                    simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':ten_min_ini_sim, 'ten_min_fin_sim':ten_min_fin_sim, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}     
+                     #simControl={'finance_study':1,'mes_ini_sim':1,'dia_ini_sim':1,'hora_ini_sim':0,'mes_fin_sim':12,'dia_fin_sim':31,'hora_fin_sim':24, 'itercontrol':inputsDjango['itercontrol'],'ten_min_ini_sim':0, 'ten_min_fin_sim':0, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}
                 elif inputsDjango['itercontrol']=='paso_15min':
                     
-                    if minute['fifteen_min_ini_sim'] in range(0,14):
+                    if minute['fifteen_min_ini_sim'] in range(0,15):
                         fifteen_min_ini_sim=0
-                    elif minute['fifteen_min_ini_sim'] in range(15,29):
+                    elif minute['fifteen_min_ini_sim'] in range(15,30):
                         fifteen_min_ini_sim=1
-                    elif minute['fifteen_min_ini_sim'] in range(30,44):
+                    elif minute['fifteen_min_ini_sim'] in range(30,45):
                         fifteen_min_ini_sim=2
-                    elif minute['fifteen_min_ini_sim'] in range(45,59):
+                    elif minute['fifteen_min_ini_sim'] in range(45,60):
                         fifteen_min_ini_sim=3
-                    if minute['fifteen_min_fin_sim'] in range(0,14):
+                    if minute['fifteen_min_fin_sim'] in range(0,15):
                         fifteen_min_fin_sim=0
-                    elif minute['fifteen_min_fin_sim'] in range(15,29):
+                    elif minute['fifteen_min_fin_sim'] in range(15,30):
                         fifteen_min_fin_sim=1
-                    elif minute['fifteen_min_fin_sim'] in range(30,44):
+                    elif minute['fifteen_min_fin_sim'] in range(30,45):
                         fifteen_min_fin_sim=2
-                    elif minute['fifteen_min_fin_sim'] in range(45,59):
+                    elif minute['fifteen_min_fin_sim'] in range(45,60):
                         fifteen_min_fin_sim=3
                 
                     simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'fifteen_min_ini_sim':fifteen_min_ini_sim, 'fifteen_min_fin_sim':fifteen_min_fin_sim, 'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}    
@@ -128,7 +128,8 @@ def new_simulation(request):
             tv.save()
             #Converts the lists in plotVars into strings for storing in the database. Removed "[" and "]"
             #For converting back [float(item) for item in string_series.split()]
-            plotVars.update({
+            if plotVars['steps_sim']==8759 or plotVars['steps_sim']==52560 or plotVars['steps_sim']==35040:
+                plotVars.update({
                 'Break_cost':str(plotVars['Break_cost'])[1:-1], 
                 'Acum_FCF':str(plotVars['Acum_FCF'])[1:-1],
                 'FCF':str(plotVars['FCF'])[1:-1], 
@@ -143,18 +144,45 @@ def new_simulation(request):
                 'Q_useful':str(plotVars['Q_useful'])[1:-1], 
                 'Q_defocus':str(plotVars['Q_defocus'])[1:-1], 
                 'T_alm_K':str(plotVars['T_alm_K'])[1:-1], 
-            })
-            del plotVars['Q_prod_steam']
-            del plotVars['Q_drum']
-            del plotVars['SD_min_energy']
-            del plotVars['SD_max_energy']
-            del plotVars['SD_energy']
+                })
+                # del plotVars['Q_prod_steam']
+                # del plotVars['Q_drum']
+                # del plotVars['SD_min_energy']
+                # del plotVars['SD_max_energy']
+                # del plotVars['SD_energy']
+            else:
+                plotVars.update({
+                'step_sim':str(plotVars['step_sim'])[1:-1], 
+                'Q_prod_steam':str(plotVars['Q_prod_steam'])[1:-1],
+                'Q_drum':str(plotVars['Q_drum'])[1:-1],
+                'SD_energy':str(plotVars['SD_energy'])[1:-1],
+                'T_in_C_AR':str(plotVars['T_in_C_AR'])[1:-1], 
+                'Demand':str(plotVars['Demand'])[1:-1], 
+                'Q_prod':str(plotVars['Q_prod'])[1:-1], 
+                'Q_prod_lim':str(plotVars['Q_prod_lim'])[1:-1], 
+                'Q_charg':str(plotVars['Q_charg'])[1:-1], 
+                'Q_discharg':str(plotVars['Q_discharg'])[1:-1], 
+                'DNI':str(plotVars['DNI'])[1:-1], 
+                'SOC':str(plotVars['SOC'])[1:-1], 
+                'Q_useful':str(plotVars['Q_useful'])[1:-1], 
+                'Q_defocus':str(plotVars['Q_defocus'])[1:-1], 
+                'T_alm_K':str(plotVars['T_alm_K'])[1:-1],
+                'Q_prod_rec':str(plotVars['Q_prod_rec'])[1:-1],
+                })
+                
+                del plotVars['Acum_FCF']
+                del plotVars['FCF']
+                del plotVars['Break_cost']
+                
+            
+            
             pv = PlotVars(**plotVars)
             pv.save()
 
             #Converts the lists in reportsVar into strings for storing in the database. Removed "[" and "]"
             #For converting back [float(item) for item in string_series.split()]
-            reportsVar.update({
+            if plotVars['steps_sim']==8759 or plotVars['steps_sim']==52560 or plotVars['steps_sim']==35040:
+                reportsVar.update({
                 'fuelPrizeArrayList':str(reportsVar['fuelPrizeArrayList'])[1:-1], 
                 'Acum_FCFList':str(reportsVar['Acum_FCFList'])[1:-1], 
                 'Energy_savingsList':str(reportsVar['Energy_savingsList'])[1:-1], 
@@ -167,7 +195,7 @@ def new_simulation(request):
                 'Q_discharg':str(reportsVar['Q_discharg'])[1:-1], 
                 'Q_defocus':str(reportsVar['Q_defocus'])[1:-1], 
                 'flow_rate_kgs':str(reportsVar['flow_rate_kgs'])[1:-1], 
-            })
+                })
 
             rv = ReportVars(**reportsVar)
             rv.save()

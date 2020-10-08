@@ -51,8 +51,8 @@ class Simulation(models.Model):
     month_fin_sim=models.IntegerField(_("Month in which the simulation ends"),validators=[validators.MinValueValidator(0, message=_("The month cannot be less or equal to 0")),validators.MaxValueValidator(13, message=_("The month cannot be greater than 12"))], default=1 )
     day_ini_sim=models.IntegerField(_("Day in which the simulation starts"),validators=[validators.MinValueValidator(0, message=_("The day cannot be less or equal to 0")),validators.MaxValueValidator(32, message=_("The day cannot be greater than 31"))], default=1 )
     day_fin_sim=models.IntegerField(_("Day in which the simulation ends"),validators=[validators.MinValueValidator(0, message=_("The month cannot be less or equal to 0")),validators.MaxValueValidator(32, message=_("This cannot be greater than 31"))], default=1 )
-    hour_fin_sim = models.TimeField(_("Ending hour of simulation"), )
-    hour_ini_sim = models.TimeField(_("Starting hour of simultation. "), )
+    hour_fin_sim = models.TimeField(_("Ending hour of simulation."), )
+    hour_ini_sim = models.TimeField(_("Starting hour of simultation. For hourly simulations, day starts at 1 "), )
 
 
     #Consumption profile
