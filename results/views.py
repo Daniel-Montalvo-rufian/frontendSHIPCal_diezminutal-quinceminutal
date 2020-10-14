@@ -33,23 +33,23 @@ def result(request, sim_id):
         'FCF':[float(item) for item in (sim_results.plotVars.FCF).split(",")], 
         'T_in_C_AR':[float(item) for item in (sim_results.plotVars.T_in_C_AR).split(",")], 
         'Demand':[float(item) for item in (sim_results.plotVars.Demand).split(",")], 
-        'Q_prod':[float(item) for item in (sim_results.plotVars.Q_prod).split(",")], 
+        'Q_prod':array([float(item) for item in (sim_results.plotVars.Q_prod).split(",")]), 
         'Q_prod_lim':[float(item) for item in (sim_results.plotVars.Q_prod_lim).split(",")], 
-        'Q_charg':[float(item) for item in (sim_results.plotVars.Q_charg).split(",")], 
+        'Q_charg':array([float(item) for item in (sim_results.plotVars.Q_charg).split(",")]), 
         'Q_discharg':[float(item) for item in (sim_results.plotVars.Q_discharg).split(",")], 
         'DNI':[float(item) for item in (sim_results.plotVars.DNI).split(",")], 
         'SOC':[float(item) for item in (sim_results.plotVars.SOC).split(",")], 
         'Q_useful':[float(item) for item in (sim_results.plotVars.Q_useful).split(",")], 
         'Q_defocus':[float(item) for item in (sim_results.plotVars.Q_defocus).split(",")], 
         'T_alm_K':[float(item) for item in (sim_results.plotVars.T_alm_K).split(",")], 
-        'step_sim':[float(item) for item in (sim_results.plotVars.step_sim).split(",")],
-        'Q_prod_steam':[float(item) for item in (sim_results.plotVars.Q_prod_steam).split(",")],
-        'Q_drum':[float(item) for item in (sim_results.plotVars.Q_drum).split(",")],
-        'SD_energy':[float(item) for item in (sim_results.plotVars.SD_energy).split(",")],
-        'Q_prod_rec':[float(item) for item in (sim_results.plotVars.Q_prod_rec).split(",")],
+         # 'step_sim':[float(item) for item in (sim_results.plotVars.step_sim).split(",")],
+         # 'Q_prod_steam':[float(item) for item in (sim_results.plotVars.Q_prod_steam).split(",")],
+         # 'Q_drum':[float(item) for item in (sim_results.plotVars.Q_drum).split(",")],
+         # 'SD_energy':[float(item) for item in (sim_results.plotVars.SD_energy).split(",")],
+         # 'Q_prod_rec':[float(item) for item in (sim_results.plotVars.Q_prod_rec).split(",")],
     })
-    print('itercontrol es:', sim_results.plotVars.itercontrol,'pasos de simulación son:',sim_results.plot.steps_sim)
-    if sim_results.plot.steps_sim==8760 or sim_results.plot.steps_sim==52560 or sim_results.plot.steps_sim==35040:
+    
+    if sim_results.plotVars.steps_sim==8760 or sim_results.plotVars.steps_sim==52560 or sim_results.plotVars.steps_sim==35040:
         if sim_results.plotVars.itercontrol!='paso_10min' and sim_results.plotVars.itercontrol!='paso_15min':
             plots = {
             'image_financePlot': financePlot(**pv_d),
@@ -93,10 +93,11 @@ def result_instalation(request, sim_id):
         # 'Q_defocus':[float(item) for item in (sim_results.reportsVar.Q_defocus).split(",")],
         # 'flow_rate_kgs':[float(item) for item in (sim_results.reportsVar.flow_rate_kgs).split(",")],
     }
-    if sim_results.plot.steps_sim==8760 or sim_results.plot.steps_sim==52560 or sim_results.plot.steps_sim==35040:
-        return render(request,'imp_instalation.html', {'s':sim_results})
-    else:
-        return render(request,'imp_instalation.html')
+    return render(request,'imp_instalation.html', {'s':sim_results})
+#     if sim_results.plotVars.steps_sim==8760 or sim_results.plotVars.steps_sim==52560 or sim_results.plotVars.steps_sim==35040:
+#         return render(request,'imp_instalation.html', {'s':sim_results})
+#     else:
+#         return render(request,'imp_instalation.html')
 def result_production(request, sim_id):
     sim_results = SimResults.objects.get(simulation=sim_id)
     
@@ -108,19 +109,28 @@ def result_production(request, sim_id):
         'FCF':[float(item) for item in (sim_results.plotVars.FCF).split(",")], 
         'T_in_C_AR':[float(item) for item in (sim_results.plotVars.T_in_C_AR).split(",")], 
         'Demand':[float(item) for item in (sim_results.plotVars.Demand).split(",")], 
-        'Q_prod':[float(item) for item in (sim_results.plotVars.Q_prod).split(",")], 
+        'Q_prod':array([float(item) for item in (sim_results.plotVars.Q_prod).split(",")]), 
         'Q_prod_lim':[float(item) for item in (sim_results.plotVars.Q_prod_lim).split(",")], 
-        'Q_charg':[float(item) for item in (sim_results.plotVars.Q_charg).split(",")], 
+        'Q_charg':array([float(item) for item in (sim_results.plotVars.Q_charg).split(",")]), 
         'Q_discharg':[float(item) for item in (sim_results.plotVars.Q_discharg).split(",")], 
         'DNI':[float(item) for item in (sim_results.plotVars.DNI).split(",")], 
         'SOC':[float(item) for item in (sim_results.plotVars.SOC).split(",")], 
         'Q_useful':[float(item) for item in (sim_results.plotVars.Q_useful).split(",")], 
         'Q_defocus':[float(item) for item in (sim_results.plotVars.Q_defocus).split(",")], 
         'T_alm_K':[float(item) for item in (sim_results.plotVars.T_alm_K).split(",")], 
-        'Q_prod_steam':[float(item) for item in (sim_results.plotVars.Q_prod_steam).split(",")],
-        'Q_drum':[float(item) for item in (sim_results.plotVars.Q_drum).split(",")],
-        'SD_energy':[float(item) for item in (sim_results.plotVars.SD_energy).split(",")],
-        'Q_prod_rec':[float(item) for item in (sim_results.plotVars.Q_prod_rec).split(",")],
+        # 'Q_prod_steam':[float(item) for item in (sim_results.plotVars.Q_prod_steam).split(",")],
+        # 'Q_drum':[float(item) for item in (sim_results.plotVars.Q_drum).split(",")],
+        # 'SD_energy':[float(item) for item in (sim_results.plotVars.SD_energy).split(",")],
+        # 'Q_prod_rec':[float(item) for item in (sim_results.plotVars.Q_prod_rec).split(",")],
+        # 'step_sim':[float(item) for item in (sim_results.plotVars.step_sim).split(",")],
+        # 'flowrate_kgs':[float(item) for item in (sim_results.plotVars.flowrate_kgs).split(",")],
+        # 'flowrate_rec':[float(item) for item in (sim_results.plotVars.flowrate_rec).split(",")],
+        # 'flowDemand':[float(item) for item in (sim_results.plotVars.flowDemand).split(",")],
+        # 'flowToHx':[float(item) for item in (sim_results.plotVars.flowToHx).split(",")],
+        # 'flowToMix':[float(item) for item in (sim_results.plotVars.flowToMix).split(",")],
+        # 'T_in_K':[float(item) for item in (sim_results.plotVars.T_in_K).split(",")],
+        # 'T_toProcess_C':[float(item) for item in (sim_results.plotVars.T_toProcess_C).split(",")],
+        # 'T_out_K':[float(item) for item in (sim_results.plotVars.T_out_K).split(",")],
     })
 
     # Plots of fluid properties
@@ -136,7 +146,7 @@ def result_production(request, sim_id):
     elif fluid=="moltenSalt": 
         image_prop1 = rhoTempPlotSalt(**pv_d) #(12) Plot thermal oil properties Rho & Cp vs Temp
         image_prop2 = viscTempPlotSalt(**pv_d) #(13) Plot thermal oil properties Viscosities vs Temp
-    if sim_results.plot.steps_sim==8760 or sim_results.plot.steps_sim==52560 or sim_results.plot.steps_sim==35040:
+    if sim_results.plotVars.steps_sim==8760 or sim_results.plotVars.steps_sim==52560 or sim_results.plotVars.steps_sim==35040:
         if sim_results.plotVars.itercontrol!='paso_10min' and sim_results.plotVars.itercontrol!='paso_15min':
             plots = {
             'image_prodMonths': prodMonths(**pv_d),
@@ -169,7 +179,7 @@ def result_production(request, sim_id):
             plots = {
             'image_prodvsdemand': demandVsRadiation2(**pv_d),
             'image_Sankey':storageNonAnnual2(**pv_d),
-            'image_flowrateandtemperature': flowRatesPlot2(**pv_d),
+            # 'image_flowrateandtemperature': flowRatesPlot2(**pv_d),
             
             'image_prop1':image_prop1,
             'image_prop2':image_prop2
@@ -211,12 +221,13 @@ def result_finance(request, sim_id):
         'Q_useful':[float(item) for item in (sim_results.plotVars.Q_useful).split(",")], 
         'Q_defocus':[float(item) for item in (sim_results.plotVars.Q_defocus).split(",")], 
         'T_alm_K':[float(item) for item in (sim_results.plotVars.T_alm_K).split(",")], 
-        'Q_prod_steam':[float(item) for item in (sim_results.plotVars.Q_prod_steam).split(",")],
-        'Q_drum':[float(item) for item in (sim_results.plotVars.Q_drum).split(",")],
-        'SD_energy':[float(item) for item in (sim_results.plotVars.SD_energy).split(",")],
-        'Q_prod_rec':[float(item) for item in (sim_results.plotVars.Q_prod_rec).split(",")],
+        # 'Q_prod_steam':[float(item) for item in (sim_results.plotVars.Q_prod_steam).split(",")],
+        # 'Q_drum':[float(item) for item in (sim_results.plotVars.Q_drum).split(",")],
+        # 'SD_energy':[float(item) for item in (sim_results.plotVars.SD_energy).split(",")],
+        # 'Q_prod_rec':[float(item) for item in (sim_results.plotVars.Q_prod_rec).split(",")],
+        
     })
-    if sim_results.plot.steps_sim==8760 or sim_results.plot.steps_sim==52560 or sim_results.plot.steps_sim==35040:
+    if sim_results.plotVars.steps_sim==8760 or sim_results.plotVars.steps_sim==52560 or sim_results.plotVars.steps_sim==35040:
         if sim_results.plotVars.itercontrol!='paso_10min' and sim_results.plotVars.itercontrol!='paso_15min':
             plots = {
             'image_financePlot': financePlot(**pv_d),
@@ -229,4 +240,4 @@ def result_finance(request, sim_id):
             }
         return render(request,'imp_finance.html', {'s':sim_results, 'pv_d':pv_d, 'rv_l':rv_l, 'p':plots, 't':t_data})
     else:
-        return render(request,'imp_finance.html')
+        return render(request,'imp_finance.html', {'s':sim_results, 'pv_d':pv_d, 'rv_l':rv_l, 'p':plots, 't':t_data})

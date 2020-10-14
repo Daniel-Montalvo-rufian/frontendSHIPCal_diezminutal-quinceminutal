@@ -72,6 +72,15 @@ class PlotVars(models.Model):
     SD_min_energy=models.FloatField()
     SD_max_energy=models.FloatField()
     Q_prod_rec=models.TextField()
+    flowrate_kgs=models.TextField()
+    flowrate_rec=models.TextField()
+    flowDemand=models.TextField()
+    flowToHx=models.TextField()
+    flowToMix=models.TextField()
+    T_in_K=models.TextField()
+    T_toProcess_C=models.TextField()
+    T_out_K=models.TextField()
+    
     
     Break_cost = models.TextField(_("Break cost"),default='0') #list
     Acum_FCF = models.TextField(_("Acumulated FCF"),default='0') #list

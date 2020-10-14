@@ -131,7 +131,7 @@ def new_simulation(request):
                     simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}
             
             template_vars,plotVars,reportsVar,version = SHIPcal(1,inputsDjango,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],200,confReport,modificators,desginDict,simControl,sim.id)
-            
+            print('Los pasos de simulación son:',len(plotVars['step_sim']), 'demanda:',len(plotVars['Demand']))
             tv = TemplateVars(v=version)
             tv.save()
             #Converts the lists in plotVars into strings for storing in the database. Removed "[" and "]"
@@ -160,7 +160,7 @@ def new_simulation(request):
                 # del plotVars['SD_energy']
             else:
                 plotVars.update({
-                'step_sim':str(plotVars['step_sim'])[1:-1], 
+                'step_sim':str(plotVars['step_sim'].tolist())[1:-1], 
                 'Q_prod_steam':str(plotVars['Q_prod_steam'])[1:-1],
                 'Q_drum':str(plotVars['Q_drum'])[1:-1],
                 'SD_energy':str(plotVars['SD_energy'])[1:-1],
@@ -175,7 +175,15 @@ def new_simulation(request):
                 'Q_useful':str(plotVars['Q_useful'])[1:-1], 
                 'Q_defocus':str(plotVars['Q_defocus'])[1:-1], 
                 'T_alm_K':str(plotVars['T_alm_K'])[1:-1],
-                'Q_prod_rec':str(plotVars['Q_prod_rec'])[1:-1],
+                'Q_prod_rec':str(plotVars['Q_prod_rec'].tolist())[1:-1],
+                'flowrate_kgs':str(plotVars['flowrate_kgs'].tolist())[1:-1],
+                'flowrate_rec':str(plotVars['flowrate_rec'])[1:-1],
+                'flowDemand':str(plotVars['flowrate_rec'])[1:-1],
+                'flowToHx':str(plotVars['flowToHx'])[1:-1],
+                'flowToMix':str(plotVars['flowToMix'])[1:-1],
+                'T_in_K':str(plotVars['T_in_K'])[1:-1],
+                'T_toProcess_C':str(plotVars['T_toProcess_C'])[1:-1],
+                'T_out_K':str(plotVars['T_out_K'])[1:-1],
                 })
                 
                 del plotVars['Acum_FCF']
