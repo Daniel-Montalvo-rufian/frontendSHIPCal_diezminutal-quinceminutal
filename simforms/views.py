@@ -136,8 +136,8 @@ def new_simulation(request):
             tv.save()
             #Converts the lists in plotVars into strings for storing in the database. Removed "[" and "]"
             #For converting back [float(item) for item in string_series.split()]
-            if plotVars['steps_sim']==8759 or plotVars['steps_sim']==52560 or plotVars['steps_sim']==35040:
-                plotVars.update({
+            
+            plotVars.update({
                 'Break_cost':str(plotVars['Break_cost'])[1:-1], 
                 'Acum_FCF':str(plotVars['Acum_FCF'])[1:-1],
                 'FCF':str(plotVars['FCF'])[1:-1], 
@@ -152,39 +152,22 @@ def new_simulation(request):
                 'Q_useful':str(plotVars['Q_useful'])[1:-1], 
                 'Q_defocus':str(plotVars['Q_defocus'])[1:-1], 
                 'T_alm_K':str(plotVars['T_alm_K'])[1:-1], 
-                })
-                # del plotVars['Q_prod_steam']
-                # del plotVars['Q_drum']
-                # del plotVars['SD_min_energy']
-                # del plotVars['SD_max_energy']
-                # del plotVars['SD_energy']
-            else:
-                plotVars.update({
                 'step_sim':str(plotVars['step_sim'].tolist())[1:-1], 
+                'Q_prod_rec':str(plotVars['Q_prod_rec'].tolist())[1:-1],
+                'flowrate_kgs':str(plotVars['flowrate_kgs'].tolist())[1:-1],
+                'flowrate_rec':str(plotVars['flowrate_rec'].tolist())[1:-1],
+                'flowDemand':str(plotVars['flowrate_rec'].tolist())[1:-1],
+                'flowToHx':str(plotVars['flowToHx'].tolist())[1:-1],
+                'flowToMix':str(plotVars['flowToMix'].tolist())[1:-1],
+                'T_in_K':str(plotVars['T_in_K'].tolist())[1:-1],
+                'T_toProcess_C':str(plotVars['T_toProcess_C'].tolist())[1:-1],
+                'T_out_K':str(plotVars['T_out_K'].tolist())[1:-1],
                 'Q_prod_steam':str(plotVars['Q_prod_steam'])[1:-1],
                 'Q_drum':str(plotVars['Q_drum'])[1:-1],
                 'SD_energy':str(plotVars['SD_energy'])[1:-1],
-                'T_in_C_AR':str(plotVars['T_in_C_AR'])[1:-1], 
-                'Demand':str(plotVars['Demand'])[1:-1], 
-                'Q_prod':str(plotVars['Q_prod'])[1:-1], 
-                'Q_prod_lim':str(plotVars['Q_prod_lim'])[1:-1], 
-                'Q_charg':str(plotVars['Q_charg'])[1:-1], 
-                'Q_discharg':str(plotVars['Q_discharg'])[1:-1], 
-                'DNI':str(plotVars['DNI'])[1:-1], 
-                'SOC':str(plotVars['SOC'])[1:-1], 
-                'Q_useful':str(plotVars['Q_useful'])[1:-1], 
-                'Q_defocus':str(plotVars['Q_defocus'])[1:-1], 
-                'T_alm_K':str(plotVars['T_alm_K'])[1:-1],
-                'Q_prod_rec':str(plotVars['Q_prod_rec'].tolist())[1:-1],
-                'flowrate_kgs':str(plotVars['flowrate_kgs'].tolist())[1:-1],
-                'flowrate_rec':str(plotVars['flowrate_rec'])[1:-1],
-                'flowDemand':str(plotVars['flowrate_rec'])[1:-1],
-                'flowToHx':str(plotVars['flowToHx'])[1:-1],
-                'flowToMix':str(plotVars['flowToMix'])[1:-1],
-                'T_in_K':str(plotVars['T_in_K'])[1:-1],
-                'T_toProcess_C':str(plotVars['T_toProcess_C'])[1:-1],
-                'T_out_K':str(plotVars['T_out_K'])[1:-1],
                 })
+                
+            if plotVars['steps_sim']!=8759 and plotVars['steps_sim']!=52560 and plotVars['steps_sim']!=35040:
                 
                 del plotVars['Acum_FCF']
                 del plotVars['FCF']

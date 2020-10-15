@@ -14,7 +14,7 @@
 			</div>
 	</div>
 </div>
-
+{% if s.plotVars.steps_sim == 8760 or s.plotVars.steps_sim == 52560 or s.plotVars.steps_sim == 35040 %}
 <ul class="nav nav-tabs">
     <li class="nav-item">
         {% url 'results' s.simulation.id as r %}
@@ -145,5 +145,44 @@
     </div>
 
 </div>
+{% endif %}
 
+
+{% if s.plotVars.steps_sim != 8760 and s.plotVars.steps_sim != 52560 and s.plotVars.steps_sim != 35040 %}
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        {% url 'results' s.simulation.id as r %}
+        <a class="nav-link{% if request.path == r %} active{% endif %}" href="{{r}}">{% trans "Results" %}</a>
+    </li>
+    
+    <li class="nav-item">
+        {% url 'results_production' s.simulation.id as rp%}
+        <a class="nav-link{% if request.path == rp %} active{% endif %}" href="{{rp}}">{% trans "Properties" %}</a>
+    </li>
+    
+</ul>
+
+<div class="container-fluid">
+
+    <h3>{% trans "Thermal fluid temperatures during the process" %}</h3>
+    <hr>
+    {% blocktrans with To=s.plotVars.T_out_C|floatformat Ti=s.plotVars.T_in_C|floatformat trimmed %}
+    <p> The whole circuit is in liquid phase, there is no evaporation. At the solar inlet the fluid enters at {{ Ti }}ºC.
+    The solar field heats the fluid up to {{ To }}ºC, corresponding to the outlet temperature towards the boiler. </p>
+    {% endblocktrans %}
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_prop1 }}">
+        </div>
+    
+        <div class="form-group col-md-6">
+            <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_prop2 }}">
+        </div>
+    </div>
+
+</div>
+
+{% endif %}
 {% endblock %}

@@ -16,6 +16,7 @@
 	</div>
 </div>
 
+{% if s.plotVars.steps_sim == 8760 or s.plotVars.steps_sim == 52560 or s.plotVars.steps_sim == 35040 %}
 <ul class="nav nav-tabs">
     <li class="nav-item">
         {% url 'results' s.simulation.id as r %}
@@ -102,5 +103,54 @@
 </div>
 
 <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_prodMonths }}"><br>
+{% endif %}
+{% if s.plotVars.steps_sim != 8760 and s.plotVars.steps_sim != 52560 and s.plotVars.steps_sim != 35040 %}
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        {% url 'results' s.simulation.id as r %}
+        <a class="nav-link{% if request.path == r %} active{% endif %}" href="{{r}}">{% trans "Results" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_production' s.simulation.id as rp%}
+        <a class="nav-link{% if request.path == rp %} active{% endif %}" href="{{rp}}">{% trans "Properties" %}</a>
+    </li>
+    
+    
+</ul>
+<div class="container-fluid">
 
+<h3> {% trans "Demand vs radiation" %} </h3>
+<hr>
+
+</div>
+
+<img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_prodvsdemand }}"><br>
+
+<div class="container-fluid">
+
+<h3> {% trans "Temperatures and flows." %} </h3>
+<hr>
+
+	
+	
+</div>
+
+<img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_flowrateandtemperature }}"><br>
+
+
+    {% if s.plotVars.type_integration == 'SL_L_PS' or type_integration == 'SL_L_S' or type_integration == 'SL_S_FWS' or type_integration == 'SL_S_MWS' or type_integration == 'SL_S_PDS' %}
+    <div class="container-fluid">
+
+        <h4> {% trans "Storage " %}</h4>
+        <hr>
+
+	
+	
+    </div>
+
+    <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_Storage }}"><br>
+    {% endif %}
+
+
+{% endif %}
 {% endblock %}

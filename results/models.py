@@ -80,7 +80,7 @@ class PlotVars(models.Model):
     T_in_K=models.TextField()
     T_toProcess_C=models.TextField()
     T_out_K=models.TextField()
-    
+    m_dot_min_kgs=models.FloatField()
     
     Break_cost = models.TextField(_("Break cost"),default='0') #list
     Acum_FCF = models.TextField(_("Acumulated FCF"),default='0') #list
