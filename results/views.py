@@ -5,7 +5,7 @@ from .models import SimResults, TemplateVars, PlotVars, ReportVars
 from numpy import array
 
 from SHIPcal.Plot_modules.plottingSHIPcal import SankeyPlot,prodWinterPlot,prodSummerPlot,financePlot,storageWinter,storageSummer,prodMonths,savingsMonths #noqa
-from SHIPcal.Plot_modules.plottingSHIPcal import mollierPlotST,mollierPlotSH,rhoTempPlotOil,viscTempPlotOil,rhoTempPlotSalt,viscTempPlotSalt,demandVsRadiation, storageNonAnnual,flowRatesPlot #noqa
+from SHIPcal.Plot_modules.plottingSHIPcal import mollierPlotST,mollierPlotSH,rhoTempPlotOil,viscTempPlotOil,rhoTempPlotSalt,viscTempPlotSalt,demandVsRadiation, storageNonAnnual,flowRatesPlot, storageNonAnnualSL_S_PDR, SL_S_PDR_Plot #noqa
 from SHIPcal.Plot_modules.plottingSHIPcal_2 import prodMonths2, prodSummerPlot2, prodWinterPlot2, savingsMonths2,demandVsRadiation2, storageNonAnnual2, flowRatesPlot2, storageNonAnnualSL_S_PDR2, SL_S_PDR_Plot2
 # Create your views here.
 
@@ -76,16 +76,16 @@ def result(request, sim_id):
             'image_prodvsdemand': demandVsRadiation(**pv_d),
             'image_flowrateandtemperature': flowRatesPlot(**pv_d),
             'image_Storage':storageNonAnnual(**pv_d),
-            'image_storage_SL_S_PD':storageNonAnnualSL_S_PDR(**pv_d),
-            'image_SL_S_PD':SL_S_PDR_Plot(**pv_d)
+            # 'image_storage_SL_S_PD':storageNonAnnualSL_S_PDR(**pv_d),
+            # 'image_SL_S_PD':SL_S_PDR_Plot(**pv_d)
             }
         else:
             plots = {
             'image_prodvsdemand': demandVsRadiation2(**pv_d),
             'image_flowrateandtemperature': flowRatesPlot2(**pv_d),
             'image_Storage':storageNonAnnual2(**pv_d),
-            'image_storage_SL_S_PD':storageNonAnnualSL_S_PDR2(**pv_d),
-            'image_SL_S_PD':SL_S_PDR_Plot2(**pv_d)
+            # 'image_storage_SL_S_PD':storageNonAnnualSL_S_PDR2(**pv_d),
+            # 'image_SL_S_PD':SL_S_PDR_Plot2(**pv_d)
             }
         return render(request,'imp.html', {'s':sim_results, 'rv_l':rv_l, 'p':plots})
 

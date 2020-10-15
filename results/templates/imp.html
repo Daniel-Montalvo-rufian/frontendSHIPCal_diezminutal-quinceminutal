@@ -138,7 +138,7 @@
 <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_flowrateandtemperature }}"><br>
 
 
-    {% if s.plotVars.type_integration == 'SL_L_PS' or type_integration == 'SL_L_S' or type_integration == 'SL_S_FWS' or type_integration == 'SL_S_MWS' or type_integration == 'SL_S_PDS' %}
+    {% if s.plotVars.type_integration == 'SL_L_PS' or type_integration == 'SL_L_S' or type_integration == 'SL_S_FWS' or type_integration == 'SL_S_MWS'   %}
     <div class="container-fluid">
 
         <h4> {% trans "Storage " %}</h4>
@@ -151,6 +151,20 @@
     <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_Storage }}"><br>
     {% endif %}
 
+    {% if s.plotVars.type_integration == 'SL_S_PDS' %}
+    
+    <div class="container-fluid">
+
+        <h4> {% trans "Storage " %}</h4>
+        <hr>
+
+	
+	
+    </div>
+
+    <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_storage_SL_S_PD }}"><br>
+    
+    {% endif %}
 
 {% endif %}
 {% endblock %}
