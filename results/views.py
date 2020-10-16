@@ -58,7 +58,7 @@ def result(request, sim_id):
         
     })
     
-    if sim_results.plotVars.steps_sim==8760 or sim_results.plotVars.steps_sim==52560 or sim_results.plotVars.steps_sim==35040:
+    if sim_results.plotVars.steps_sim==8759 or sim_results.plotVars.steps_sim==52560 or sim_results.plotVars.steps_sim==35040:
         if sim_results.plotVars.itercontrol!='paso_10min' and sim_results.plotVars.itercontrol!='paso_15min':
             plots = {
             'image_financePlot': financePlot(**pv_d),
@@ -159,7 +159,7 @@ def result_production(request, sim_id):
     elif fluid=="moltenSalt": 
         image_prop1 = rhoTempPlotSalt(**pv_d) #(12) Plot thermal oil properties Rho & Cp vs Temp
         image_prop2 = viscTempPlotSalt(**pv_d) #(13) Plot thermal oil properties Viscosities vs Temp
-    if sim_results.plotVars.steps_sim==8760 or sim_results.plotVars.steps_sim==52560 or sim_results.plotVars.steps_sim==35040:
+    if sim_results.plotVars.steps_sim==8759 or sim_results.plotVars.steps_sim==52560 or sim_results.plotVars.steps_sim==35040:
         if sim_results.plotVars.itercontrol!='paso_10min' and sim_results.plotVars.itercontrol!='paso_15min':
             plots = {
             'image_prodMonths': prodMonths(**pv_d),
@@ -233,7 +233,7 @@ def result_finance(request, sim_id):
         
         
     })
-    if sim_results.plotVars.steps_sim==8760 or sim_results.plotVars.steps_sim==52560 or sim_results.plotVars.steps_sim==35040:
+    if sim_results.plotVars.steps_sim==8759 or sim_results.plotVars.steps_sim==52560 or sim_results.plotVars.steps_sim==35040:
         if sim_results.plotVars.itercontrol!='paso_10min' and sim_results.plotVars.itercontrol!='paso_15min':
             plots = {
             'image_financePlot': financePlot(**pv_d),

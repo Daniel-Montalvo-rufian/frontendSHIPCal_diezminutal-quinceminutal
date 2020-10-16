@@ -14,7 +14,7 @@
 			</div>
 	</div>
 </div>
-{% if s.plotVars.steps_sim == 8760 or s.plotVars.steps_sim == 52560 or s.plotVars.steps_sim == 35040 %}
+{% if s.plotVars.steps_sim == 8759 or s.plotVars.steps_sim == 52560 or s.plotVars.steps_sim == 35040 %}
 <ul class="nav nav-tabs">
     <li class="nav-item">
         {% url 'results' s.simulation.id as r %}
@@ -148,7 +148,7 @@
 {% endif %}
 
 
-{% if s.plotVars.steps_sim != 8760 and s.plotVars.steps_sim != 52560 and s.plotVars.steps_sim != 35040 %}
+{% if s.plotVars.steps_sim != 8759 and s.plotVars.steps_sim != 52560 and s.plotVars.steps_sim != 35040 %}
 
 <ul class="nav nav-tabs">
     <li class="nav-item">

@@ -14,6 +14,7 @@ class SimulationForm(forms.ModelForm):
         itercontrol= cleaned_data.get("itercontrol")
         hour_fin_sim= cleaned_data.get("hour_fin_sim").hour
         hour_ini_sim=cleaned_data.get("hour_ini_sim").hour
+        annual=cleaned_data.get("annual")
         if itercontrol=='paso_10min':
             if location.city[-5:]!='10min':
                  raise ValidationError(
@@ -30,7 +31,7 @@ class SimulationForm(forms.ModelForm):
                 raise ValidationError(
                     'TMY must be hourly-step resolution'
                 )
-            if hour_ini_sim==0 or hour_fin_sim==0:
+            if (hour_ini_sim==0 or hour_fin_sim==0) and annual != 'yes':
                 raise ValidationError(
                     'For hourly steps, the first hour of the day in the TMY is 1, not 0'
                 )

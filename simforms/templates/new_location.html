@@ -20,6 +20,7 @@
 
         <div class="col-md-4 form-group">
             {{form.city.label_tag}}<br>
+            <span> {% trans "The TMY's name must finish with '10min' for resolutions of ten minutes and with '15min' for resolutions of fifteen minutes" %}: </span>
             {{form.city}}
             <div class="valid-feedback">
                 {% trans "Looks good!" %}

@@ -131,7 +131,7 @@ def new_simulation(request):
                     simControl={'finance_study':1,'mes_ini_sim':inputsDjango['month_ini_sim'],'dia_ini_sim':inputsDjango['day_ini_sim'],'hora_ini_sim':sim_form.cleaned_data['hour_ini_sim'].hour,'mes_fin_sim':inputsDjango['month_fin_sim'],'dia_fin_sim':inputsDjango['day_fin_sim'],'hora_fin_sim':sim_form.cleaned_data['hour_fin_sim'].hour, 'itercontrol':inputsDjango['itercontrol'],'to_solartime':inputsDjango['to_solartime'], 'huso':inputsDjango['huso']}
             
             template_vars,plotVars,reportsVar,version = SHIPcal(1,inputsDjango,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],200,confReport,modificators,desginDict,simControl,sim.id)
-            print('Los pasos de simulación son:',len(plotVars['step_sim']), 'demanda:',len(plotVars['Demand']))
+            
             tv = TemplateVars(v=version)
             tv.save()
             #Converts the lists in plotVars into strings for storing in the database. Removed "[" and "]"
