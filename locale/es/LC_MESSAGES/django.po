@@ -1,0 +1,1150 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-25 17:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: demo_SHIPcal/settings.py:113
+msgid "Spanish"
+msgstr "Español"
+
+#: demo_SHIPcal/settings.py:114
+msgid "English"
+msgstr "Inglés"
+
+#: results/models.py:24 results/models.py:30 results/models.py:83
+msgid "Version"
+msgstr "Versión"
+
+#: results/models.py:33 results/models.py:115
+msgid "Language"
+msgstr "Idioma"
+
+#: results/models.py:34 results/models.py:93
+msgid "Maximum production"
+msgstr "Producción máxima"
+
+#: results/models.py:35 results/models.py:94
+msgid "Limited production"
+msgstr "Producción límite"
+
+#: results/models.py:36
+msgid "Annual thermal losses"
+msgstr "Pérdidas anuales térmicas"
+
+#: results/models.py:37 results/models.py:98
+msgid "Annual irradiation"
+msgstr "Radiación anual"
+
+#: results/models.py:39 results/models.py:91
+#: results/templates/imp_instalation.html:57 simforms/models.py:94
+msgid "Number of loops"
+msgstr "Numero de series"
+
+#: results/models.py:40
+msgid "Images quality"
+msgstr "Calidad de imagenes"
+
+#: results/models.py:41
+msgid "Plots path"
+msgstr "Ruta a imágenes"
+
+#: results/models.py:42
+msgid "Energy before boiler"
+msgstr "Energía antes de caldera"
+
+#: results/models.py:43 results/models.py:92
+msgid "Minimum massic flux"
+msgstr "Flujo másico mínimo"
+
+#: results/models.py:44
+msgid "Simulation steps"
+msgstr "Pasos de simulación"
+
+#: results/models.py:45 results/models.py:99
+msgid "Amortization year"
+msgstr "Año de amortización"
+
+#: results/models.py:46 results/models.py:109
+msgid "Selling price"
+msgstr "Precio de venta"
+
+#: results/models.py:47
+msgid "Inlet entropy"
+msgstr "Entropía de entrada"
+
+#: results/models.py:48
+msgid "Outlet entropy"
+msgstr "Entropía de salida"
+
+#: results/models.py:49
+msgid "Feeded from grid (0 no, 1 yes)"
+msgstr "Alimentado desde la red (0 no, 1 sí)"
+
+#: results/models.py:50 simforms/models.py:23
+msgid "Fuel price"
+msgstr "Precio de combustible"
+
+#: results/models.py:51
+msgid "Boiler efficiency"
+msgstr "Eficiencia de la caldera"
+
+#: results/models.py:52
+msgid "Inlet temperature towards collectors [C]"
+msgstr "Temperatura de entrada a los colectores [C]"
+
+#: results/models.py:53
+msgid "Outlet temperature from collectors [C]"
+msgstr "Temperatura de salida desde los colectores [C]"
+
+#: results/models.py:54
+msgid "Outlet entropy from process"
+msgstr "Entropía en la salida del proceso"
+
+#: results/models.py:55
+msgid "Outlet temperature from process"
+msgstr "Entropía en la entrada del proceso"
+
+#: results/models.py:56
+msgid "Work pressure"
+msgstr "Presión de trabajo"
+
+#: results/models.py:57
+msgid "Steam quality"
+msgstr "Calidad de vapor"
+
+#: results/models.py:58
+msgid "Inlet enthalpy"
+msgstr "Entalpía de entrada"
+
+#: results/models.py:59
+msgid "Outlet enthalpy"
+msgstr "Entalpía de salida"
+
+#: results/models.py:60
+msgid "Inlet enthalpy towards process"
+msgstr "Entalía de entrada al proceso"
+
+#: results/models.py:61
+msgid "Outlet enthalpy from process"
+msgstr "Entalpía de salida desde el proceso"
+
+#: results/models.py:62 results/models.py:116
+msgid "Sender"
+msgstr "Envía"
+
+#: results/models.py:63 results/models.py:85
+#: results/templates/imp_instalation.html:73 simforms/models.py:96
+#: simforms/templates/simulation_form.html:356
+msgid "Integration schema"
+msgstr "Esquema de integración"
+
+#: results/models.py:64
+msgid "Origin"
+msgstr "Origen"
+
+#: results/models.py:65
+msgid "Years simulated"
+msgstr "Años simulados"
+
+#: results/models.py:67
+msgid "Break cost"
+msgstr "Costo desglosado"
+
+#: results/models.py:68 results/models.py:132
+msgid "Acumulated FCF"
+msgstr "FCF acumulado"
+
+#: results/models.py:70
+msgid "Water temperature from grid"
+msgstr "Temperatura del agua de la red"
+
+#: results/models.py:71
+msgid "Demand"
+msgstr "Demanda"
+
+#: results/models.py:72 results/models.py:136
+msgid "Produced heat"
+msgstr "Calor producido"
+
+#: results/models.py:73 results/models.py:137
+msgid "Limited produced heat"
+msgstr "Límite de calor producido"
+
+#: results/models.py:74 results/models.py:139
+msgid "Charged heat"
+msgstr "Calor cargado"
+
+#: results/models.py:75 results/models.py:140
+msgid "Discharged heat"
+msgstr "Calor descargado"
+
+#: results/models.py:76
+msgid "Solar radiation"
+msgstr "Radiación solar"
+
+#: results/models.py:78
+msgid "Useful produced heat"
+msgstr "Calor producido útil"
+
+#: results/models.py:79 results/models.py:141
+msgid "Defocused heat"
+msgstr "Energía desenfocada"
+
+#: results/models.py:80
+msgid "Storage temperature [k]"
+msgstr "Temperatura del almacenamiento [k]"
+
+#: results/models.py:84
+msgid "Logo output"
+msgstr "Salida del logo"
+
+#: results/models.py:86
+msgid "Stored energy"
+msgstr "Energía almacenada"
+
+#: results/models.py:87 simforms/templates/async/locations.html:2
+#: simforms/templates/simulation_form.html:49
+msgid "Location"
+msgstr "Ubicación"
+
+#: results/models.py:88
+msgid "Total area"
+msgstr "Área total"
+
+#: results/models.py:89 results/templates/imp_instalation.html:54
+#: simforms/models.py:95
+msgid "Collectors per loop"
+msgstr "Colectores por serie"
+
+#: results/models.py:90
+msgid "Max stored energy"
+msgstr "Máxima energía almacenada"
+
+#: results/models.py:95 results/models.py:138
+msgid "Annual demand"
+msgstr "Demanda anual"
+
+#: results/models.py:96
+msgid "Maximum solar fraction"
+msgstr "Fracción solar máxima"
+
+#: results/models.py:97
+msgid "Limited solar fraction"
+msgstr "Fracción solar límite"
+
+#: results/models.py:100
+msgid "Requested finance study (0 no, 1 yes)"
+msgstr "Solicitó estudio financiero (0 no, 1 sí)"
+
+#: results/models.py:102
+msgid "Savings from CO2"
+msgstr "Ahorros por CO2"
+
+#: results/models.py:103
+msgid "IRR text"
+msgstr "Texto TIR"
+
+#: results/models.py:104
+msgid "IRR10 text"
+msgstr "Texto TIR10"
+
+#: results/models.py:105
+msgid "Amortization text"
+msgstr "Texto de amortización"
+
+#: results/models.py:106
+msgid "Price per CO2 Ton"
+msgstr "Precio por tonelada de CO2"
+
+#: results/models.py:107
+msgid "Fuel increase"
+msgstr "Incremento en el combustible"
+
+#: results/models.py:110 results/templates/imp.html:69
+msgid "IRR"
+msgstr "TIR"
+
+#: results/models.py:111
+msgid "IRR 10"
+msgstr "TIR 10"
+
+#: results/models.py:112
+msgid "CO2 saved Tons"
+msgstr "Toneladas de CO2 ahorradas"
+
+#: results/models.py:113
+msgid "Levelized cost of energy"
+msgstr "Costo nivelado de la energía"
+
+#: results/models.py:114
+msgid "Mean energy savings"
+msgstr "Ahorro energético promedio"
+
+#: results/models.py:117
+msgid "Report header"
+msgstr "Encabezado de reporte"
+
+#: results/models.py:119
+msgid "Total charged energy"
+msgstr "Energía total cargada"
+
+#: results/models.py:120
+msgid "Total discharged energy"
+msgstr "Energía total descargada"
+
+#: results/models.py:121
+msgid "Total defocused energy"
+msgstr "Energía total desenfocada"
+
+#: results/models.py:123
+msgid "Utilization ratio"
+msgstr "Proporción de uso"
+
+#: results/models.py:124
+msgid "Mean massic flux"
+msgstr "Flujo másico promedio"
+
+#: results/models.py:125
+msgid "Max energy produced per module"
+msgstr "Máxima energía producida por módulo"
+
+#: results/models.py:126 simforms/models.py:99
+msgid "Investment modificator"
+msgstr "Modificador de inversión"
+
+#: results/models.py:127
+msgid "Irradiation modificator"
+msgstr "Modificador de radiación"
+
+#: results/models.py:128 simforms/models.py:101
+msgid "Production modificator"
+msgstr "Modificador de producción"
+
+#: results/models.py:129 results/templates/imp.html:45
+msgid "Mean savings"
+msgstr "Ahorro promedio"
+
+#: results/models.py:131
+msgid "Yearly fuel price"
+msgstr "Precio anual de combustible"
+
+#: results/models.py:133
+msgid "Energy savings"
+msgstr "Ahorro energético"
+
+#: results/models.py:134
+msgid "Operation and maniteinance annual costs"
+msgstr "Costos de operación y mantenimiento"
+
+#: results/models.py:135
+msgid "Annual energy costs"
+msgstr "Costo energético anual"
+
+#: results/models.py:142
+msgid "Massic flows"
+msgstr "Flujo másico"
+
+#: results/templates/imp.html:4 results/templates/imp_finance.html:4
+#: results/templates/imp_prod.html:4
+msgid "Summary of simulation results"
+msgstr "Resultados de simulación"
+
+#: results/templates/imp.html:11 results/templates/imp_finance.html:10
+#: results/templates/imp_instalation.html:13 results/templates/imp_prod.html:10
+#: templates/base.html:37
+msgid "Results"
+msgstr "Resultados"
+
+#: results/templates/imp.html:11 results/templates/imp_finance.html:10
+#: results/templates/imp_instalation.html:13 results/templates/imp_prod.html:10
+#: results/templates/results.html:16
+msgid "Simulation"
+msgstr "Simulación"
+
+#: results/templates/imp.html:14 results/templates/imp_finance.html:13
+#: results/templates/imp_instalation.html:16 results/templates/imp_prod.html:13
+msgid "Go to simulate"
+msgstr "Ir a simular"
+
+#: results/templates/imp.html:22 results/templates/imp_finance.html:21
+#: results/templates/imp_instalation.html:24 results/templates/imp_prod.html:21
+msgid "Summary"
+msgstr "Resumen"
+
+#: results/templates/imp.html:26 results/templates/imp_finance.html:25
+#: results/templates/imp_instalation.html:28 results/templates/imp_prod.html:25
+msgid "Solar instalation"
+msgstr "Instalación solar"
+
+#: results/templates/imp.html:30 results/templates/imp_finance.html:29
+#: results/templates/imp_instalation.html:32 results/templates/imp_prod.html:29
+msgid "Solar production"
+msgstr "Producción solar"
+
+#: results/templates/imp.html:34 results/templates/imp.html:40
+#: results/templates/imp_finance.html:33
+#: results/templates/imp_instalation.html:36 results/templates/imp_prod.html:33
+msgid "Financial summary"
+msgstr "Resumen financiero"
+
+#: results/templates/imp.html:48
+msgid "Solar savings year"
+msgstr "Ahorro solar año"
+
+#: results/templates/imp.html:48 results/templates/imp.html:51
+#: results/templates/imp.html:57 results/templates/imp.html:63
+#: results/templates/imp.html:84 results/templates/imp.html:87
+#: results/templates/imp.html:90 results/templates/imp_finance.html:49
+#: results/templates/imp_finance.html:74 results/templates/imp_prod.html:52
+#: results/templates/imp_prod.html:60 results/templates/imp_prod.html:61
+#: results/templates/imp_prod.html:62 results/templates/imp_prod.html:66
+#: results/templates/imp_prod.html:67
+msgid "year"
+msgstr "año"
+
+#: results/templates/imp.html:51
+msgid "Mean solar savings"
+msgstr "Ahorro solar promedio"
+
+#: results/templates/imp.html:57
+msgid "Current invoice"
+msgstr "Factura actual"
+
+#: results/templates/imp.html:60
+msgid "Investment"
+msgstr "Inversión"
+
+#: results/templates/imp.html:63 results/templates/imp_finance.html:49
+msgid "Payback"
+msgstr "Retorno"
+
+#: results/templates/imp.html:79
+msgid "Solar production summary"
+msgstr "Resumen de producción solar"
+
+#: results/templates/imp.html:84
+msgid "Available radiation"
+msgstr "Radiación disponible"
+
+#: results/templates/imp.html:87 results/templates/imp_prod.html:61
+msgid "Supplied production"
+msgstr "Producción suministrada"
+
+#: results/templates/imp.html:90
+#, python-format
+msgid "Demand (80%% boiler efficiency)"
+msgstr "Demanda (eficiencia de caldera 80%%)"
+
+#: results/templates/imp.html:97
+msgid "Solar fraction"
+msgstr "Fracción solar"
+
+#: results/templates/imp_finance.html:39
+msgid "Investment breakdown"
+msgstr "Desglose de inversión"
+
+#: results/templates/imp_finance.html:45
+msgid "Total investment"
+msgstr "Inversión total"
+
+#: results/templates/imp_finance.html:53
+msgid "Client IRR"
+msgstr "TIR para el cliente"
+
+#: results/templates/imp_finance.html:57
+msgid "IRR in 10 years"
+msgstr "TIR en 20 años"
+
+#: results/templates/imp_finance.html:64
+msgid ""
+"Costs breakdown of the solar plat. The costs are an aproximation and may not "
+"be updated."
+msgstr ""
+"Desglose de costos de la planta solar. Los costos son aproximados y pueden "
+"noestar actualizados"
+
+#: results/templates/imp_finance.html:68
+msgid "Collectors"
+msgstr "Colectores"
+
+#: results/templates/imp_finance.html:69
+msgid "Storage"
+msgstr "Almacenamiento"
+
+#: results/templates/imp_finance.html:73
+msgid "Integration and accesories"
+msgstr "Integración y accesorios"
+
+#: results/templates/imp_finance.html:74
+msgid "Operation and maintenance"
+msgstr "Mantenimiento y operación"
+
+#: results/templates/imp_finance.html:85
+msgid "Year"
+msgstr "Año"
+
+#: results/templates/imp_finance.html:85
+msgid "Fuel cost"
+msgstr "Costo de combustible"
+
+#: results/templates/imp_finance.html:85
+msgid "Energetic invoice with traditional fuel"
+msgstr "Factura energética con combustible tradicional"
+
+#: results/templates/imp_finance.html:85
+msgid "Energetic invoice with your solar field"
+msgstr "Factura energética con campo solar"
+
+#: results/templates/imp_finance.html:85
+msgid "Solar savings"
+msgstr "Ahorro solar"
+
+#: results/templates/imp_finance.html:85
+msgid "Free cash flow"
+msgstr "Flujo libre de efectivo"
+
+#: results/templates/imp_finance.html:85
+msgid "Accumulated cash flow"
+msgstr "Flujo de efectivo acumulado"
+
+#: results/templates/imp_finance.html:97
+msgid "Mensual savings details"
+msgstr "Detalle de ahorro mensual"
+
+#: results/templates/imp_instalation.html:42
+msgid "Selected array"
+msgstr "Arreglo seleccionado"
+
+#: results/templates/imp_instalation.html:45
+#, python-format
+msgid ""
+"<p> The solar instalation is formed by a certain number of collectors "
+"grouped by loops. The collectors within the loops are connected in series. "
+"The series connect paralel. THe number of collector per loop is designed to "
+"to achieve the increase in temperature from <b>%(Ti)s °C</b> into <b>%(To)s "
+"°C</b>. The number of loops depends on the total energy demand of the "
+"industry.</p>"
+msgstr ""
+"<p>La instalación solar está formada por un número determinado de "
+"colectores, agrupados en filas. En las filas los colectores se unen en "
+"serie. Las series se conectan en paralelo. El número de colectores por fila "
+"se ha diseñado para que en una fila se alcance el salto de temperatura de "
+"diseño de <b>%(Ti)s °C</b> a <b>%(To)s °C</b>. El número de filas depende de "
+"la demanda de energía de la industria.</p>"
+
+#: results/templates/imp_instalation.html:60
+msgid "Collector"
+msgstr "Colector"
+
+#: results/templates/imp_instalation.html:66
+msgid "Used area"
+msgstr "Area utilizada"
+
+#: results/templates/imp_instalation.html:76
+msgid "Selected schema"
+msgstr "Esquema seleccionado"
+
+#: results/templates/imp_instalation.html:80
+msgid "Mean flux"
+msgstr "Flujo promedio"
+
+#: results/templates/imp_instalation.html:87
+msgid "Storage volume"
+msgstr "Volumen de almacenamiento"
+
+#: results/templates/imp_instalation.html:87
+msgid "liters"
+msgstr "litros"
+
+#: results/templates/imp_instalation.html:93
+msgid "Storage capacity"
+msgstr "Capacidad de almacenamiento"
+
+#: results/templates/imp_prod.html:39 results/templates/imp_prod.html:106
+msgid "Production through a year"
+msgstr "Producción durante un año"
+
+#: results/templates/imp_prod.html:48
+msgid "Meteorologic file"
+msgstr "Archivo meteorológico"
+
+#: results/templates/imp_prod.html:52
+msgid "Total solar energy at location"
+msgstr "Energía solar total en la ubicación"
+
+#: results/templates/imp_prod.html:60
+msgid "Raw production"
+msgstr "Producción bruta"
+
+#: results/templates/imp_prod.html:62
+msgid "Production per module"
+msgstr "Producción por módulo"
+
+#: results/templates/imp_prod.html:66
+msgid "Energy consumed by traditional boiler"
+msgstr "Energía consumida por la caldera tradicional"
+
+#: results/templates/imp_prod.html:67
+msgid "Energy required by the process (demand)"
+msgstr "Energía requerida por el proceso (demanda)"
+
+#: results/templates/imp_prod.html:74
+msgid "Storage status"
+msgstr "Estado del almacenamiento"
+
+#: results/templates/imp_prod.html:78
+msgid "Charged"
+msgstr "Cargada"
+
+#: results/templates/imp_prod.html:78
+msgid "Stored solar energy in one year"
+msgstr "Energía solar almacenada durante un año"
+
+#: results/templates/imp_prod.html:79
+msgid "Discharged"
+msgstr "Descargada"
+
+#: results/templates/imp_prod.html:79
+msgid "Stored and supplied energy in one year"
+msgstr "Energia almacenada y suministrada durante un año"
+
+#: results/templates/imp_prod.html:80
+msgid "Defocused"
+msgstr "Desenfocada"
+
+#: results/templates/imp_prod.html:80
+msgid "Solar energy that cannot be stored nor supplied in one year"
+msgstr ""
+"Energía solar que no puede ser ni almacenada ni administrada durante un año"
+
+#: results/templates/imp_prod.html:88
+msgid "Energy utilization"
+msgstr "Utilización de energía"
+
+#: results/templates/imp_prod.html:92
+msgid "Raw production vs demand"
+msgstr "Producción bruta vs demanda"
+
+#: results/templates/imp_prod.html:96
+msgid "Supplied production vs demand"
+msgstr "Producción suministrada vs demanda"
+
+#: results/templates/imp_prod.html:113
+msgid "Details of winter and summer production"
+msgstr "Detalle de la producción durante invierno y verano"
+
+#: results/templates/imp_prod.html:130
+msgid "Thermal fluid temperatures during the process"
+msgstr "Temperaturas del fluido durante el proceso"
+
+#: results/templates/imp_prod.html:132
+#, python-format
+msgid ""
+"<p> The whole circuit is in liquid phase, there is no evaporation. At the "
+"solar inlet the fluid enters at %(Ti)sºC. The solar field heats the fluid up "
+"to %(To)sºC, corresponding to the outlet temperature towards the boiler. </p>"
+msgstr ""
+"<p>Todo el circuito está en fáse líquida, no existe evaporación. A la "
+"entrada del sistema solar entra fluido líquido a %(Ti)sºC. El campo solar "
+"calienta el fluido hasta una temperatura de %(To)sºC, correspondiente a la "
+"temperatura de salida de la caldera. Dado que la temperatura de salida del "
+"campo solar es la misma que la salida de caldera, el campo solar se puede "
+"conectar directamente a la red de distribución de la fábrica</p>"
+
+#: results/templates/results.html:5
+msgid "My simulations"
+msgstr "Mis simulaciones"
+
+#: results/templates/results.html:9
+msgid "Simulations results"
+msgstr "Resultados de simulaciones"
+
+#: results/templates/results.html:15
+msgid "id"
+msgstr "id"
+
+#: results/templates/results.html:17 simforms/models.py:18
+msgid "Date"
+msgstr "Fecha"
+
+#: results/templates/results.html:18
+msgid "Actions"
+msgstr "Acciones"
+
+#: results/templates/results.html:28
+msgid "Go to the results"
+msgstr "Ir a resultados"
+
+#: simforms/forms.py:89
+msgid "The file contains a headers"
+msgstr "El archivo contiene encabezados"
+
+#: simforms/forms.py:90
+msgid "Metorologic file to load"
+msgstr "Archivo meteorológico para subir"
+
+#: simforms/models.py:11
+msgid "Name"
+msgstr "Nombre"
+
+#: simforms/models.py:14
+msgid "Industry"
+msgstr "Industria"
+
+#: simforms/models.py:15
+msgid "Industry sector"
+msgstr "Sector industrial"
+
+#: simforms/models.py:16
+msgid "Process description"
+msgstr "Descripción de proceso"
+
+#: simforms/models.py:21
+msgid "The CO2 price cannot be less than 0"
+msgstr "El precio del CO2 no puede ser menor que 0"
+
+#: simforms/models.py:22
+msgid "Business model"
+msgstr "Modelo de negocio"
+
+#: simforms/models.py:22
+msgid "Turnkey project"
+msgstr "Llave en mano"
+
+#: simforms/models.py:23
+msgid "The fuel price cannot be less than 0"
+msgstr "El costo del combustible no puede ser menor a 0"
+
+#: simforms/models.py:25 simforms/models.py:128
+#: simforms/templates/simulation_form.html:45
+msgid "Country"
+msgstr "País"
+
+#: simforms/models.py:28
+msgid "Available surface"
+msgstr "Superficie disponible"
+
+#: simforms/models.py:28
+msgid "The available surface cannot be less than 0"
+msgstr "La superficie disponible no puede ser menor a 0"
+
+#: simforms/models.py:29
+msgid "Distance to process"
+msgstr "Distancia al proceso"
+
+#: simforms/models.py:29
+msgid "The distance cannot be less than 0"
+msgstr "La distancia no puede ser menor que 0"
+
+#: simforms/models.py:31
+msgid "Fluid"
+msgstr "Fluido"
+
+#: simforms/models.py:31
+msgid "Water"
+msgstr "Agua"
+
+#: simforms/models.py:31
+msgid "Steam"
+msgstr "Vapor"
+
+#: simforms/models.py:31
+msgid "Thermal oil"
+msgstr "Acéite térmico"
+
+#: simforms/models.py:31
+msgid "Molten salts"
+msgstr "Sales fundidas"
+
+#: simforms/models.py:32
+msgid "Outlet temperature"
+msgstr "Temperatura de salida"
+
+#: simforms/models.py:33
+msgid "Inlet temperature"
+msgstr "Temperatura de entrada"
+
+#: simforms/models.py:34
+msgid "Connection type"
+msgstr "Tipo de conección"
+
+#: simforms/models.py:34
+msgid "Direct to process"
+msgstr "Directo a proceso"
+
+#: simforms/models.py:34
+msgid "With intermediate deposit"
+msgstr "Con depósito intermedio"
+
+#: simforms/models.py:39
+msgid "Pressure unit"
+msgstr "Unidades de presión"
+
+#: simforms/models.py:40
+msgid "Pressure"
+msgstr "Presión"
+
+#: simforms/models.py:43
+msgid "Annual energy demand"
+msgstr "Demanda anual de energía"
+
+#: simforms/models.py:43
+msgid "The demand cannot be less or equal to 0"
+msgstr "La demanda no puede ser menor o igual a 0"
+
+#: simforms/models.py:44
+msgid "Demand unit"
+msgstr "Unidades de demanda"
+
+#: simforms/models.py:44
+msgid "kWh/year"
+msgstr "kWh/año"
+
+#: simforms/models.py:44
+msgid "MWh/year"
+msgstr "MWh/año"
+
+#: simforms/models.py:44
+msgid "KJ/year"
+msgstr "KJ/año"
+
+#: simforms/models.py:44
+msgid "BTU/year"
+msgstr "BTU/año"
+
+#: simforms/models.py:44
+msgid "kcal/year"
+msgstr "kcal/year"
+
+#: simforms/models.py:48
+msgid "Ending time"
+msgstr "Hora de término"
+
+#: simforms/models.py:48
+msgid "The ending time cannot be less than 1"
+msgstr "La hora de término no puede ser menor que 1"
+
+#: simforms/models.py:48
+msgid "The ending time cannot be greater than 24"
+msgstr "La hora de término no puede ser mayor que 24"
+
+#: simforms/models.py:49
+msgid "Starting time"
+msgstr "Hora de inicio"
+
+#: simforms/models.py:49
+msgid "The starting time cannot be less than 0"
+msgstr "La hora de inicio no puede ser menor que 0"
+
+#: simforms/models.py:49
+msgid "The starting time cannot be greater than 23"
+msgstr "La hora de inicio no puede ser mayor que 23"
+
+#: simforms/models.py:51
+msgid "Jan"
+msgstr "Ene"
+
+#: simforms/models.py:51 simforms/models.py:52 simforms/models.py:53
+#: simforms/models.py:54 simforms/models.py:55 simforms/models.py:56
+#: simforms/models.py:57 simforms/models.py:58 simforms/models.py:59
+#: simforms/models.py:60 simforms/models.py:61 simforms/models.py:62
+#: simforms/models.py:64 simforms/models.py:65 simforms/models.py:66
+#: simforms/models.py:67 simforms/models.py:68 simforms/models.py:69
+#: simforms/models.py:70 simforms/models.py:94 simforms/models.py:95
+#: simforms/models.py:97
+msgid "This cannot be less than 0"
+msgstr "Esto no puede ser menor que 0"
+
+#: simforms/models.py:51 simforms/models.py:52 simforms/models.py:53
+#: simforms/models.py:54 simforms/models.py:55 simforms/models.py:56
+#: simforms/models.py:57 simforms/models.py:58 simforms/models.py:59
+#: simforms/models.py:60 simforms/models.py:61 simforms/models.py:62
+#: simforms/models.py:64 simforms/models.py:65 simforms/models.py:66
+#: simforms/models.py:67 simforms/models.py:68 simforms/models.py:69
+#: simforms/models.py:70
+msgid "This cannot be greater than 1"
+msgstr "ESto no puede ser mayor que 1"
+
+#: simforms/models.py:52
+msgid "Feb"
+msgstr "Feb"
+
+#: simforms/models.py:53
+msgid "Mar"
+msgstr "Mar"
+
+#: simforms/models.py:54
+msgid "Apr"
+msgstr "Abr"
+
+#: simforms/models.py:55
+msgid "May"
+msgstr "May"
+
+#: simforms/models.py:56
+msgid "Jun"
+msgstr "Jun"
+
+#: simforms/models.py:57
+msgid "Jul"
+msgstr "Jul"
+
+#: simforms/models.py:58
+msgid "Aug"
+msgstr "Ago"
+
+#: simforms/models.py:59
+msgid "Sep"
+msgstr "Sep"
+
+#: simforms/models.py:60
+msgid "Oct"
+msgstr "Oct"
+
+#: simforms/models.py:61
+msgid "Nov"
+msgstr "Nov"
+
+#: simforms/models.py:62
+msgid "Dec"
+msgstr "Dic"
+
+#: simforms/models.py:64
+msgid "Mon"
+msgstr "Lun"
+
+#: simforms/models.py:65
+msgid "Tue"
+msgstr "Mar"
+
+#: simforms/models.py:66
+msgid "Wed"
+msgstr "Mie"
+
+#: simforms/models.py:67
+msgid "Thu"
+msgstr "Jue"
+
+#: simforms/models.py:68
+msgid "Fri"
+msgstr "Vie"
+
+#: simforms/models.py:69
+msgid "Sat"
+msgstr "Sáb"
+
+#: simforms/models.py:70
+msgid "Sun"
+msgstr "Dom"
+
+#: simforms/models.py:73
+msgid "Terrain type"
+msgstr "Tipo de terreno"
+
+#: simforms/models.py:73
+msgid "Clean ground"
+msgstr "Terreno limpio"
+
+#: simforms/models.py:74
+msgid "Orientation"
+msgstr "Orientación"
+
+#: simforms/models.py:74
+msgid "North-South"
+msgstr "Norte-Sur"
+
+#: simforms/models.py:75
+msgid "Inclination"
+msgstr "Inclinación"
+
+#: simforms/models.py:75
+msgid "Flat"
+msgstr "Plano"
+
+#: simforms/models.py:76
+msgid "Shadows"
+msgstr "Sombras"
+
+#: simforms/models.py:76
+msgid "Shadows free"
+msgstr "Libre de sombras"
+
+#: simforms/models.py:97
+msgid "Thermal storage capacity"
+msgstr "Capacidad de almacenamiento térmico"
+
+#: simforms/models.py:100
+msgid "Solar radiation modificator"
+msgstr "Modificador de radiación solar"
+
+#: simforms/models.py:104 simforms/models.py:109
+#: simforms/templates/simulation_form.html:98
+msgid "Fuel"
+msgstr "Combustible"
+
+#: simforms/models.py:105
+msgid "CO2 Ton per"
+msgstr "CO2 Ton por"
+
+#: simforms/models.py:110
+msgid "Fuels"
+msgstr "Combustibles"
+
+#: simforms/models.py:117 simforms/models.py:118
+#: simforms/templates/async/table_fuelunits.html:6
+#: simforms/templates/new_fuel.html:101
+msgid "Conversion factor"
+msgstr "Factor de conversión"
+
+#: simforms/models.py:121
+msgid "Fuel unit"
+msgstr "Unidades de combustible"
+
+#: simforms/models.py:122
+msgid "Fuels units"
+msgstr "Unidades de combustibles"
+
+#: simforms/models.py:129
+msgid "City"
+msgstr "Ciudad"
+
+#: simforms/models.py:131
+msgid "Latitude"
+msgstr "Latitud"
+
+#: simforms/models.py:132
+msgid "Longitude"
+msgstr "Longitud"
+
+#: simforms/templates/async/async_sim_fu.html:2
+#: simforms/templates/simulation_form.html:106
+msgid "Fuel price per unit"
+msgstr "Precio de combustible por unidad"
+
+#: simforms/templates/async/table_fuelunits.html:7
+#: simforms/templates/new_fuel.html:102
+msgid "Units"
+msgstr "Unidades"
+
+#: simforms/templates/async/table_fuelunits.html:8
+#: simforms/templates/new_fuel.html:103
+msgid "Delete"
+msgstr "Eliminar"
+
+#: simforms/templates/new_fuel.html:30 templates/base.html:41
+msgid "Add"
+msgstr "Agregar"
+
+#: simforms/templates/new_fuel.html:119
+msgid "Update"
+msgstr "Actualizar"
+
+#: simforms/templates/new_fuel.html:119
+msgid "Create"
+msgstr "Crear"
+
+#: simforms/templates/new_location.html:14
+#: simforms/templates/new_location.html:25
+#: simforms/templates/new_location.html:36
+#: simforms/templates/new_location.html:47
+msgid "Looks good!"
+msgstr "¡Se ve bien!"
+
+#: simforms/templates/new_location.html:17
+msgid "Please provide a valid country."
+msgstr "Por favor, agrega un país válido"
+
+#: simforms/templates/new_location.html:28
+msgid "Please provide a valid city."
+msgstr "Por favor, agrega una ciudad válida"
+
+#: simforms/templates/new_location.html:39
+msgid "Please provide a valid latitude."
+msgstr "Por favor, agrega una latitud válida"
+
+#: simforms/templates/new_location.html:50
+msgid "Please provide a valid longitude."
+msgstr "Por favor, agrega una longitud válida"
+
+#: simforms/templates/new_location.html:57
+msgid "The file contains headers"
+msgstr "El archivo contiene encabezados"
+
+#: simforms/templates/new_location.html:77
+msgid "Save"
+msgstr "Guardar"
+
+#: simforms/templates/simulation_form.html:10
+msgid "Simulation information"
+msgstr "Información de simulación"
+
+#: simforms/templates/simulation_form.html:42
+msgid "Location information"
+msgstr "Información de ubicación"
+
+#: simforms/templates/simulation_form.html:85
+msgid "Financial information"
+msgstr "Información financiera"
+
+#: simforms/templates/simulation_form.html:132
+msgid "Process information"
+msgstr "Información de proceso"
+
+#: simforms/templates/simulation_form.html:160
+msgid "Consumption profile"
+msgstr "Perfil de consumo"
+
+#: simforms/templates/simulation_form.html:417
+msgid "Available soon..."
+msgstr "Disponible pronto..."
+
+#: simforms/templates/simulation_form.html:440 templates/base.html:33
+msgid "Simulate"
+msgstr "Simular"
+
+#: simforms/views.py:49
+msgid "Resultados de la <br> simulación"
+msgstr "Resultados de la <br> simulación"
+
+#: templates/base.html:8
+msgid "SHIPcal simulation"
+msgstr "Simulación de SHIPcal"
+
+#: templates/base.html:45
+msgid "New location"
+msgstr "Nueva ubicación"
+
+#: templates/base.html:48
+msgid "New collector"
+msgstr "Nuevo colector"
+
+#: templates/base.html:50
+msgid "New fuel"
+msgstr "Nuevo combustible"
+
+#: templates/base.html:65
+msgid "Wanna help?"
+msgstr "¿Quieres ayudar?"
+
+#: templates/base.html:65
+msgid "Send a pull request!"
+msgstr "Envía una solicitud de pull"
+
+#: templates/base.html:65
+msgid "Supported by SOLATOM "
+msgstr "Respaldado por SOLATOM"

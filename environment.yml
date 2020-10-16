@@ -1,0 +1,15 @@
+name: SHIPcal_demo
+channels:
+  - defaults
+dependencies:
+  - django
+  - matplotlib
+  - numpy
+  - pandas
+  - python
+  - pip
+  - scipy
+  - pip:
+    - django-countries
+    - iapws
+

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Summary of simulation results" %} {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+			<div class="col-md-6">
+				<h2> {% trans "Results" %}: </h2> <h4>{% trans "Simulation" %} # {{s.simulation.id}} - {{s.simulation.industry}}</h4>
+			</div>
+			<div align="right" class="col-md-6">
+				<a class="btn btn-success" href="{% url 'simulate' %}"> {% trans "Go to simulate" %}</a>
+			</div>
+	</div>
+</div>
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        {% url 'results' s.simulation.id as r %}
+        <a class="nav-link{% if request.path == r %} active{% endif %}" href="{{r}}">{% trans "Summary" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_instalation' s.simulation.id as ri%}
+        <a class="nav-link{% if request.path == ri %} active{% endif %}" href="{{ri}}">{% trans "Solar instalation" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_production' s.simulation.id as rp%}
+        <a class="nav-link{% if request.path == rp %} active{% endif %}" href="{{rp}}">{% trans "Solar production" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_financial' s.simulation.id as rf %}
+        <a class="nav-link{% if request.path == rf %} active{% endif %}" href="{{rf}}">{% trans "Financial summary" %}</a>
+    </li>
+</ul>
+
+<div class="container-fluid">
+
+    <h3> {% trans "Investment breakdown" %}</h3>
+    <hr>
+	
+	<div class="row">
+	
+		<div class="col-md-3">
+			<b> {% trans "Total investment" %}:</b> {{ s.reportsVar.Selling_price|floatformat }} € <br>
+		</div>
+		
+		<div class="col-md-3">
+			<b> {% trans "Payback" %}:</b> {% trans 'year' %} {{ s.reportsVar.AmortYear }} <br>
+		</div>
+		
+		<div class="col-md-3">
+			<b> {% trans "Client IRR" %}:</b> {{ s.reportsVar.IRR|floatformat }} % <br>
+		</div>
+		
+		<div class="col-md-3">
+			<b> {% trans "IRR in 10 years" %}:</b> {{ s.reportsVar.IRR10|floatformat }} %<br>
+		</div>
+		
+	</div>
+
+	<br>
+
+	<p> {% trans "Costs breakdown of the solar plat. The costs are an aproximation and may not be updated." %}</p>
+
+	<div class="row">
+		<div class="col-md-6">
+			<b> {% trans "Collectors" %}:</b> {{ pv_d.Break_cost.0|floatformat }} € <br>
+			<b> {% trans "Storage" %}:</b> {{ pv_d.Break_cost.2|floatformat }} € <br>
+		</div>
+		
+		<div class="col-md-6">
+			<b> {% trans "Integration and accesories" %}:</b> {{ pv_d.Break_cost.1|floatformat }} € <br>
+			<b> {% trans "Operation and maintenance" %}:</b> {{ rv_l.OM_cost_year|last|floatformat }} €/{% trans 'year' %} <br>
+		</div>
+	</div>
+	
+	<br>
+
+	<img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_financePlot }}"><br>
+	
+    <div class="table-responsive-md">
+        <table class="table table-hover">
+            <thead>
+            <tr><th style="text-align:center">{% trans 'Year' %}</th><th style="text-align:center">{% trans "Fuel cost" %} [€/kWh]</th><th style="text-align:center"> {% trans "Energetic invoice with traditional fuel" %}[€]</th><th style="text-align:center">{% trans "Energetic invoice with your solar field" %} [€]</th> <th style="text-align:center"> {% trans "Solar savings" %} [€]</th> <th style="text-align:center"> {% trans "Free cash flow" %} [€]</th> <th style="text-align:center"> {% trans "Accumulated cash flow" %} [€]</th> </tr>
+            </thead>
+            
+            <tbody>
+            {% for data in t %}
+                <tr> <td style="text-align:center">{{ forloop.counter }}</td> <td style="text-align:center">{{ data.0|floatformat }}</td> <td style="text-align:center"> {{ data.1|floatformat }}</td> <td style="text-align:center"> {{ data.2|floatformat }}</td> <td style="text-align:center">{{ data.3|floatformat }}</td> <td style="text-align:center">{{ data.4|floatformat }}</td> <td style="text-align:center">{{ data.5|floatformat }}</td> </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+	</div>
+
+	<h3> {% trans "Mensual savings details" %}</h3>
+	<hr>
+
+	<img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_savingsMonths }}"><br>	
+
+</div>
+
+{% endblock %}

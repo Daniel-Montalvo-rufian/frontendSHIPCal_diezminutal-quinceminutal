@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Summary of simulation results" %} {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+			<div class="col-md-6">
+				<h2> {% trans "Results" %}: </h2> <h4>{% trans "Simulation" %} # {{s.simulation.id}} - {{s.simulation.industry}}</h4>
+			</div>
+			<div align="right" class="col-md-6">
+				<a class="btn btn-success" href="{% url 'simulate' %}"> {% trans "Go to simulate" %}</a>
+			</div>
+	</div>
+</div>
+
+{% if s.plotVars.steps_sim == 8759 or s.plotVars.steps_sim == 52560 or s.plotVars.steps_sim == 35040 %}
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        {% url 'results' s.simulation.id as r %}
+        <a class="nav-link{% if request.path == r %} active{% endif %}" href="{{r}}">{% trans "Summary" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_instalation' s.simulation.id as ri%}
+        <a class="nav-link{% if request.path == ri %} active{% endif %}" href="{{ri}}">{% trans "Solar instalation" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_production' s.simulation.id as rp%}
+        <a class="nav-link{% if request.path == rp %} active{% endif %}" href="{{rp}}">{% trans "Solar production" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_financial' s.simulation.id as rf %}
+        <a class="nav-link{% if request.path == rf %} active{% endif %}" href="{{rf}}">{% trans "Financial summary" %}</a>
+    </li>
+</ul>
+	
+<div class="container-fluid">
+
+<h3> {% trans "Financial summary" %} </h3>
+<hr>
+
+	<div class="row">
+		<div class="col-md-4">
+			<b> {% trans "Mean savings" %}:</b> {{ s.reportsVar.fraction_savings|floatformat }} %
+		</div>
+		<div class="col-md-4">
+			<b> {% trans "Solar savings year" %} 1:</b> {{ rv_l.Energy_savingsList.1|floatformat }} €/{% trans "year" %}
+		</div>
+		<div class="col-md-4">
+			<b> {% trans "Mean solar savings" %}:</b> {{ s.reportsVar.Energy_savings_mean|floatformat }} €/{% trans "year" %}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<b> {% trans "Current invoice" %}:</b> {{ rv_l.anual_energy_cost.0|floatformat }} €/{% trans "year" %}
+		</div>
+		<div class="col-md-4">
+			<b> {% trans "Investment" %}:</b> {{ s.reportsVar.Selling_price|floatformat }} €
+		</div>
+		<div class="col-md-4">
+			<b> {% trans "Payback" %}:</b> {% trans "year" %} {{ s.reportsVar.AmortYear }}
+		</div>
+	</div> 	
+	
+	<div class="row">
+		<div class="col-md-12">
+			<b> {% trans "IRR" %}:</b> {{ s.reportsVar.IRR|floatformat }} %
+		</div>
+	</div>
+	
+</div>
+
+<img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_financePlot }}"><br>
+
+<div class="container-fluid">
+
+<h3> {% trans "Solar production summary" %} </h3>
+<hr>
+
+	<div class="row">
+		<div class="col-md-4">
+			<b> {% trans "Available radiation" %}:</b> {{ s.reportsVar.DNI_anual_irradiation|floatformat }} kWh/{% trans "year" %} m<sup>2</sup>
+		</div>
+		<div class="col-md-4">
+			<b> {% trans "Supplied production" %}:</b> {{ s.reportsVar.Production_lim|floatformat }} kWh/{% trans "year" %}
+		</div>
+		<div class="col-md-4">
+			<b> {% trans "Demand (80% boiler efficiency)" %}:</b> {{ s.reportsVar.Demand_anual|floatformat }} kWh/{% trans "year" %}
+		</div>
+	</div> 	
+	
+	<div class="row">
+
+		<div class="col-md-4">
+			<b> {% trans "Solar fraction" %}: </b> {{ s.reportsVar.solar_fraction_lim|floatformat }}  %
+		</div>
+		
+	</div>
+	
+</div>
+
+<img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_prodMonths }}"><br>
+{% endif %}
+{% if s.plotVars.steps_sim != 8759 and s.plotVars.steps_sim != 52560 and s.plotVars.steps_sim != 35040 %}
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        {% url 'results' s.simulation.id as r %}
+        <a class="nav-link{% if request.path == r %} active{% endif %}" href="{{r}}">{% trans "Results" %}</a>
+    </li>
+    <li class="nav-item">
+        {% url 'results_production' s.simulation.id as rp%}
+        <a class="nav-link{% if request.path == rp %} active{% endif %}" href="{{rp}}">{% trans "Properties" %}</a>
+    </li>
+    
+    
+</ul>
+<div class="container-fluid">
+
+<h3> {% trans "Demand vs radiation" %} </h3>
+<hr>
+
+</div>
+
+<img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_prodvsdemand }}"><br>
+
+<div class="container-fluid">
+
+<h3> {% trans "Temperatures and flows." %} </h3>
+<hr>
+
+	
+	
+</div>
+
+<img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_flowrateandtemperature }}"><br>
+
+
+    {% if s.plotVars.type_integration == 'SL_L_PS' or type_integration == 'SL_L_S' or type_integration == 'SL_S_FWS' or type_integration == 'SL_S_MWS'   %}
+    <div class="container-fluid">
+
+        <h4> {% trans "Storage " %}</h4>
+        <hr>
+
+	
+	
+    </div>
+
+    <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_Storage }}"><br>
+    {% endif %}
+
+    {% if s.plotVars.type_integration == 'SL_S_PDS' %}
+    
+    <div class="container-fluid">
+
+        <h4> {% trans "Storage " %}</h4>
+        <hr>
+
+	
+	
+    </div>
+
+    <img class="img-fluid mx-auto d-block" src="data:image/png;base64,{{ p.image_storage_SL_S_PD }}"><br>
+    
+    {% endif %}
+
+{% endif %}
+{% endblock %}

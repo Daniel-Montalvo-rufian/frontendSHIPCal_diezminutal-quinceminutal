@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "My simulations" %} {% endblock %}
+
+{% block content %}
+{% language 'es' %}
+<h1>{% trans "Simulations results" %}</h1>
+
+<div class="table-responsive-md">
+    <table class="table table-hover" id="fuel_table">
+        <thead>
+            <tr>
+            <th scope="col">{% trans "id" %}</th>
+            <th scope="col">{% trans "Simulation" %}</th>
+            <th scope="col">{% trans "Date" %}</th>
+            <th scope="col">{% trans "Actions" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for s in simulations %}
+            <tr>
+                <td>{{s.simulation.id}}</td>
+                <td>{{s.simulation.industry}}</td>
+                <td>{{s.simulation.date}}</td>
+                <td><a class='btn btn-light' href="{% url 'results' s.simulation.id %}"> {% trans "Go to the results" %}   <img src='{% static 'bootstrap-icons/pie-chart-fill.svg' %}' alt='resultados' width='25' height='25'></a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% endlanguage %}
+{% endblock %}
