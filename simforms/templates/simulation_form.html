@@ -39,7 +39,7 @@
     </fieldset>
     <br>
     <fieldset>
-        <legend>{% trans "Calculate solar time" %}</legend>
+        <legend>{% trans "Solar time:" %}</legend>
             <div class="col-md">
                 <div class="form-row">
                     {{form.to_solartime.label_tag}}
@@ -61,7 +61,7 @@
             </div>
             <div class="col-md" id="id_locations">
                 <label for="{{form.location.id_for_label}}">{% trans "Location" %}:</label><br>
-                <span> {% trans "The TMY must be compatible with the step resolution mode selected" %}: </span>
+                <span> {% trans "The TMY must be compatible with the step´s resolution selected." %}: </span>
                 {{form.location}}
             </div>
         </div>
@@ -172,7 +172,7 @@
     </fieldset>
     <br>
     <fieldset>
-        <legend>{% trans "Beginning and ending of simulation. " %}</legend>
+        <legend>{% trans "Start and ending of simulation " %}</legend>
          <div class="form-row">
             <div class="col-md-2">
                 {{form.itercontrol.label_tag}}
@@ -189,7 +189,7 @@
           
         </div>
         <br>
-        <span> {% trans "Only if you have chosen not to simulate in the full year" %}: </span>
+        <span> {% trans "In case you have not chosen to simulate during a full year:" %}: </span>
         <br>
         <div class="form-row">
             <div class="col-md">

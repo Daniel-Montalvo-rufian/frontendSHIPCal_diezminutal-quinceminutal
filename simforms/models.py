@@ -15,12 +15,12 @@ class Simulation(models.Model):
     sectorIndustry = models.CharField(_("Industry sector"), max_length=30)
     process = models.TextField(_("Process description"), blank=True, null=True)
     #Solar time
-    to_solartime= models.CharField(_("Calculate solar time"), choices=[('on',_("Yes")),('off',_("No"))], max_length=3)
-    huso=models.FloatField(_("In case you have choosen to calculate the solar time, write the difference between the time format of the TMY and the UTC"),)
+    to_solartime= models.CharField(_("Do you want to calculate the solar time?"), choices=[('on',_("Yes")),('off',_("No"))], max_length=3)
+    huso=models.FloatField(_("In case you have chosen to calculate solar time, write here the difference between the format of the TMY`s time and UTC"),)
     #Simulation date and time
     date = models.DateTimeField(_("Date"), auto_now=True)
-    itercontrol= models.CharField(_("Step control"), choices=[('paso_10min',_("ten-minutes steps")),('paso_15min',_("fifteen-minutes steps")),('horario',_("hourly steps"))], max_length=10)
-    annual=models.CharField(_("In case you want to simulate in a full year"), choices=[('yes',_("Yes")),('no',_("No"))], max_length=3)
+    itercontrol= models.CharField(_("Step of simulation"), choices=[('paso_10min',_("10 minutes")),('paso_15min',_("15 minutes")),('horario',_("hourly steps"))], max_length=10)
+    annual=models.CharField(_("Do you want to simulate during a full year?"), choices=[('yes',_("Yes")),('no',_("No"))], max_length=3)
     #Financial data
     co2TonPrice = models.FloatField(validators=[validators.MinValueValidator(0, message=_("The CO2 price cannot be less than 0"))])
     businessModel = models.CharField(_("Business model"), choices=[('turnkey',_("Turnkey project")),('ESCO','ESCO')], max_length=10)
@@ -52,8 +52,8 @@ class Simulation(models.Model):
     month_fin_sim=models.IntegerField(_("Month in which the simulation ends"),validators=[validators.MinValueValidator(0, message=_("The month cannot be less or equal to 0")),validators.MaxValueValidator(13, message=_("The month cannot be greater than 12"))], default=1 )
     day_ini_sim=models.IntegerField(_("Day in which the simulation starts"),validators=[validators.MinValueValidator(0, message=_("The day cannot be less or equal to 0")),validators.MaxValueValidator(32, message=_("The day cannot be greater than 31"))], default=1 )
     day_fin_sim=models.IntegerField(_("Day in which the simulation ends"),validators=[validators.MinValueValidator(0, message=_("The month cannot be less or equal to 0")),validators.MaxValueValidator(32, message=_("This cannot be greater than 31"))], default=1 )
-    hour_fin_sim = models.TimeField(_("Ending hour of simulation."), )
-    hour_ini_sim = models.TimeField(_("Starting hour of simultation. For hourly simulations, day starts at 1 "), )
+    hour_fin_sim = models.TimeField(_("Ending hour of simulation. For hourly simulations day starts at 1, so if you write 0, SHIPCal will not run"), )
+    hour_ini_sim = models.TimeField(_("Starting hour of simulation. For hourly simulations day starts at 1, so if you write 0, SHIPCal will not run"), )
 
 
     #Consumption profile
